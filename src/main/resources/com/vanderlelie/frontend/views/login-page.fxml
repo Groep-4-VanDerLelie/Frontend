@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="447.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.controllers.LoginController">
+    <center>
+        <VBox alignment="CENTER" spacing="10.0">
+            <Label fx:id="welcomeText" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="141.0" text="Sign In">
+                <font>
+                    <Font size="27.0" />
+                </font>
+            <BorderPane.margin>
+               <Insets />
+            </BorderPane.margin></Label>
+            <Label text="Sign in to start processing orders!" />
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Login">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <BorderPane.margin>
+               <Insets top="15.0" />
+            </BorderPane.margin></TextField>
+            <PasswordField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></PasswordField>
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0">
+                <right>
+                    <Label alignment="CENTER" text="Forgot Password?" BorderPane.alignment="CENTER" />
+                </right>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <left>
+               <CheckBox mnemonicParsing="false" text="Remember Me" BorderPane.alignment="CENTER" />
+            </left>
+            </BorderPane>
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onHelloButtonClick" prefHeight="30.0" prefWidth="250.0" text="Login">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin></Button>
+        </VBox>
+
+    </center>
+   <bottom>
+      <AnchorPane maxHeight="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <CubicCurve controlX1="100.0" controlX2="250.0" controlY1="-50.0" endX="500.0" endY="25.0" fill="#4bc8b6" startY="25.0" stroke="BLACK" strokeWidth="0.0" />
+            <CubicCurve controlX1="100.0" controlX2="150.0" controlY1="-50.0" controlY2="-50.0" endX="250.5" endY="15.5" fill="#4bc8b6" layoutX="500.0" layoutY="10.0" startX="6.5" startY="15.5" stroke="BLACK" strokeWidth="0.0" />
+            <CubicCurve controlX1="200.0" controlX2="500.0" controlY2="-75.0" endX="750.0" endY="25.0" fill="#002147" startY="25.0" stroke="BLACK" strokeWidth="0.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
