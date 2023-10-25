@@ -12,4 +12,5 @@ module com.vanderlelie.frontend {
     opens com.vanderlelie.frontend.controllers to javafx.fxml;
     exports com.vanderlelie.frontend.controllers;
     exports com.vanderlelie.frontend.observers;
+    exports com.vanderlelie.frontend.models;
 }

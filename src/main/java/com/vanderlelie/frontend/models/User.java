@@ -7,7 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements AuthObservable {
+    private String username;
     private List<AuthObserver> observers = new ArrayList<>();
+
+    public User() {
+        this.username = "Testing!";
+    }
+
+    public User(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
 
     @Override
     public void registerObserver(AuthObserver authObserver) {

@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="175.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="com.vanderlelie.frontend.views.SideMenuView" prefHeight="400.0" prefWidth="175.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
       <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar" BorderPane.alignment="CENTER">
          <left>
             <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <Label text="John Doe" BorderPane.alignment="CENTER" />
+            <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
          </center>
          <right>
             <Button mnemonicParsing="false" text="&gt;" BorderPane.alignment="CENTER" />

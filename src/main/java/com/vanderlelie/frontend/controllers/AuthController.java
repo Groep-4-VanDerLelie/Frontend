@@ -24,6 +24,10 @@ public class AuthController {
         this.password = password;
     }
 
+    public User getUser() {
+        return this.user;
+    }
+
     public void login() {
         // Check password logic here
         boolean isAuthorized = username.equals("test") && password.equals("123");
