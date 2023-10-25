@@ -5,21 +5,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="132.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="175.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar" stylesheets="@../styles/main.css" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar" BorderPane.alignment="CENTER">
          <left>
             <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <Label text="Label" BorderPane.alignment="CENTER" />
+            <Label text="John Doe" BorderPane.alignment="CENTER" />
          </center>
          <right>
-            <Button mnemonicParsing="false" text="Button" BorderPane.alignment="CENTER" />
+            <Button mnemonicParsing="false" text="&gt;" BorderPane.alignment="CENTER" />
          </right>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </BorderPane>
    </bottom>
 </BorderPane>

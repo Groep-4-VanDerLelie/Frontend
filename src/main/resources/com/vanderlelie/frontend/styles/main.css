@@ -5,6 +5,6 @@
 }
 
 .user-bar {
-    -fx-border-radius: 1em;
+    -fx-background-radius: 0.5em;
     -fx-background-color: -white;
 }

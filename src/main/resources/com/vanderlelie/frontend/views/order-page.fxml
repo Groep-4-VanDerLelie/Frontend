@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.vanderlelie.frontend.views.OrderController"
-            stylesheets="@../styles/main.css"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="468.0" prefWidth="868.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.controllers.LoginController">
 
     <left>
-        <fx:include source="side-bar.fxml"/>
+        <fx:include source="side-bar.fxml" />
     </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Order Processing">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label text="Scan and start processing orders!" />
+            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+            <Label text="! hint lorem upsum" />
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Start Processing" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
