@@ -1,0 +1,10 @@
+@import "colors.css";
+
+.side-bar {
+    -fx-background-color: -dark-blue;
+}
+
+.user-bar {
+    -fx-border-radius: 1em;
+    -fx-background-color: -white;
+}
