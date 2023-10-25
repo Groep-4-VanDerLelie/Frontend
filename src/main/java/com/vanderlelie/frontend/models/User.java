@@ -34,8 +34,18 @@ public class User implements AuthObservable {
 
     @Override
     public void notifyObservers(boolean authorized) {
-        for (AuthObserver authObserver : observers) {
-            authObserver.update(authorized);
+        ArrayList<Integer> observersToRemove = new ArrayList<Integer>();
+
+        for (int i = 0; i < observers.size(); i++) {
+            AuthObserver observer = observers.get(i);
+            boolean markedForRemoval = observer.update(authorized);
+            if (markedForRemoval) {
+                observersToRemove.add(i);
+            }
+        }
+
+        for (int indexToRemove: observersToRemove) {
+            observers.remove(indexToRemove);
         }
     }
 }

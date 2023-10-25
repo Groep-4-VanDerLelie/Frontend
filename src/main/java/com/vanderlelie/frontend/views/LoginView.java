@@ -36,11 +36,15 @@ public class LoginView implements AuthObserver {
     }
 
     @Override
-    public void update(boolean authorized) {
+    public boolean update(boolean authorized) {
         if (authorized) {
             this.navigateToOrderPage();
-        } else {
-            System.out.println("nuh uh");
+
+            return true;
         }
+
+        System.out.println("nuh uh");
+
+        return false;
     }
 }

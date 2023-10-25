@@ -25,7 +25,7 @@ public class SideMenuView implements AuthObserver {
     }
 
     @Override
-    public void update(boolean authorized) {
-
+    public boolean update(boolean authorized) {
+        return false;
     }
 }
