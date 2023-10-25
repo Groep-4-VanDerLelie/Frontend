@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="468.0" prefWidth="868.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.controllers.LoginController">
+<BorderPane prefHeight="468.0" prefWidth="868.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.controllers.AuthController">
 
     <left>
         <fx:include source="side-bar.fxml" />
