@@ -1,20 +1,17 @@
 package com.vanderlelie.frontend;
 
+import com.vanderlelie.frontend.enums.ViewRoute;
+import com.vanderlelie.frontend.views.ViewNavigator;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class VanDerLelieClient extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(VanDerLelieClient.class.getResource("views/order-page.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stage) {
+        ViewNavigator.initialize(stage);
+
+        ViewNavigator navigator = ViewNavigator.getInstance();
+        navigator.navigateTo(ViewRoute.LOGIN);
     }
 
     public static void main(String[] args) {

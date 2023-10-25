@@ -39,7 +39,7 @@
                <CheckBox mnemonicParsing="false" text="Remember Me" BorderPane.alignment="CENTER" />
             </left>
             </BorderPane>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#onHelloButtonClick" prefHeight="30.0" prefWidth="250.0" text="Login">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" text="Login">
             <VBox.margin>
                <Insets />
             </VBox.margin></Button>
