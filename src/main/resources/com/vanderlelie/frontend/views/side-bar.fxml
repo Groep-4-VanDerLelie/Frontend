@@ -63,13 +63,13 @@
    
             <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar">
                <left>
-                  <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
+                  <Circle styleClass="user-icon" radius="20.0" BorderPane.alignment="CENTER" />
                </left>
                <center>
                   <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
                </center>
                <right>
-                  <Button onAction="#toggleUserMenu" mnemonicParsing="false" text="▴" BorderPane.alignment="CENTER" />
+                  <Button fx:id="userMenuToggle" id="user-menu-toggle" mnemonicParsing="false" onAction="#toggleUserMenu" text="▴" BorderPane.alignment="CENTER" />
                </right>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

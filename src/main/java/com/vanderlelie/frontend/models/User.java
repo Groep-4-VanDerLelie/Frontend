@@ -11,7 +11,7 @@ public class User implements AuthObservable {
     private List<AuthObserver> observers = new ArrayList<>();
 
     public User() {
-        this.username = "Testing!";
+        this.username = "John Doe";
     }
 
     public User(String username) {

@@ -13,6 +13,8 @@ public class SideMenuView implements AuthObserver {
     private Label usernameLabel;
     @FXML
     private VBox userContextMenu;
+    @FXML
+    private Button userMenuToggle;
     private AuthController authController;
 
     public void initialize() {
@@ -32,6 +34,9 @@ public class SideMenuView implements AuthObserver {
 
     public void toggleUserMenu() {
         userContextMenu.setVisible(!userContextMenu.isVisible());
+
+        String toggleIcon = userContextMenu.isVisible() ? "▴" : "▾";
+        userMenuToggle.setText(toggleIcon);
     }
 
     @Override
