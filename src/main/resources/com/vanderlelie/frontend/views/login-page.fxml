@@ -9,37 +9,37 @@
 <BorderPane prefHeight="447.0" prefWidth="691.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.LoginView">
     <center>
         <VBox alignment="CENTER" spacing="15.0">
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="141.0" text="Sign In">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="356.0" text="%SIGN_IN_TITLE">
                 <font>
                     <Font size="27.0" />
                 </font>
             <BorderPane.margin>
                <Insets />
             </BorderPane.margin></Label>
-            <Label text="Sign in to start processing orders!" />
-            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%LOGIN_PROMPT_TEXT">
+            <Label text="%SIGN_IN_LABEL" />
+            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%LOGIN_PROMPT">
             <VBox.margin>
                <Insets />
             </VBox.margin>
             <BorderPane.margin>
                <Insets top="15.0" />
             </BorderPane.margin></TextField>
-            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password">
+            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%PASSWORD_PROMPT">
             <VBox.margin>
                <Insets />
             </VBox.margin></PasswordField>
             <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0">
                 <right>
-                    <Label alignment="CENTER" text="Forgot Password?" BorderPane.alignment="CENTER" />
+                    <Label alignment="CENTER" text="%FORGOT_PASSWORD" BorderPane.alignment="CENTER" />
                 </right>
             <VBox.margin>
                <Insets />
             </VBox.margin>
             <left>
-               <CheckBox mnemonicParsing="false" text="Remember Me" BorderPane.alignment="CENTER" />
+               <CheckBox mnemonicParsing="false" text="%REMEMBER_ME" BorderPane.alignment="CENTER" />
             </left>
             </BorderPane>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#signIn" prefHeight="30.0" prefWidth="250.0" text="Login">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#signIn" prefHeight="30.0" prefWidth="250.0" text="%LOGIN_BUTTON">
             <VBox.margin>
                <Insets />
             </VBox.margin></Button>
