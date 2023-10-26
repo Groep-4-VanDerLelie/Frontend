@@ -29,11 +29,24 @@ public class AuthController {
     }
 
     public void login() {
-        // Check password logic here
-        boolean isAuthorized = username.equals("test") && password.equals("123");
+        try {
+            String authCode = requestAuthCode();
+            String authToken = getTokenFromCode(authCode);
 
-        this.user.notifyObservers(isAuthorized);
+            this.user.notifyObservers(true);
+        } catch (Exception e) {
+            this.user.notifyObservers(false);
+        }
     }
+
+    private String requestAuthCode() {
+        return "";
+    }
+
+    private String getTokenFromCode(String code) {
+        return "";
+    }
+
 
     public void registerLoginObserver(AuthObserver loginView) {
         this.user.registerObserver(loginView);
