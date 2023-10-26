@@ -1,5 +1,6 @@
 @import "colors.css";
 
+/* Side Bar Styling */
 .side-bar {
     -fx-background-color: -dark-blue;
 }
@@ -7,4 +8,14 @@
 .user-bar {
     -fx-background-radius: 0.5em;
     -fx-background-color: -white;
+}
+
+/* Hiding Tab Selection */
+.tab-pane {
+    -fx-tab-max-height: 0 ;
+}
+
+.tab-pane .tab-header-area {
+    visibility: hidden ;
+    -fx-padding: -20 0 0 0;
 }
