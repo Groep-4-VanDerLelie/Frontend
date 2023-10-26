@@ -8,7 +8,7 @@
 
 <BorderPane prefHeight="447.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.LoginView" stylesheets="@../styles/main.css">
     <center>
-        <VBox alignment="CENTER" spacing="10.0">
+        <VBox alignment="CENTER" spacing="15.0">
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="141.0" text="Sign In">
                 <font>
                     <Font size="27.0" />

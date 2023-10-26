@@ -25,10 +25,9 @@
     -fx-padding: 10;
     -fx-border-width: 5;
     -fx-text-fill: white;
-    -fx-font-family: "Open Sans", sans-serif;
     -fx-font-size: 14px;
     -fx-background-radius: 4px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-effect: -shadow;
 }
 
 .success {
@@ -37,4 +36,38 @@
 
 .error {
     -fx-background-color: -red;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-radius: 0.5em;
+    -fx-text-fill: -dark-blue;
+    -fx-background-color: -cyan;
+    -fx-effect: -shadow;
+}
+
+.check-box .box,
+.check-box:selected .box{
+    -fx-background-color: -dark-blue;
+}
+
+.check-box {
+    -fx-text-fill: -dark-blue;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -white;
+}
+
+/* TextField Styling */
+.text-field {
+    -fx-padding: 10px;
+    -fx-background-color: -dark-blue;
+    -fx-prompt-text-fill: -white;
+    -fx-text-fill: -white;
+}
+
+/* Label Styling */
+.label {
+    -fx-text-fill: -dark-blue;
 }
