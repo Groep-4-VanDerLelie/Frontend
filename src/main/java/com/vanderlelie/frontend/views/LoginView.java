@@ -37,13 +37,14 @@ public class LoginView implements AuthObserver {
 
     @Override
     public boolean update(boolean authorized) {
+        String toastMessage = authorized ? "Successfully logged in!" : "Invalid credentials, try again!";
+        Toast.show(toastMessage, usernameInput, authorized);
+
         if (authorized) {
             this.navigateToOrderPage();
 
             return true;
         }
-
-        System.out.println("nuh uh");
 
         return false;
     }

@@ -19,3 +19,22 @@
     visibility: hidden ;
     -fx-padding: -20 0 0 0;
 }
+
+/* Toast Styling */
+.toast {
+    -fx-padding: 10;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+    -fx-font-family: "Open Sans", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.success {
+    -fx-background-color: -green;
+}
+
+.error {
+    -fx-background-color: -red;
+}
