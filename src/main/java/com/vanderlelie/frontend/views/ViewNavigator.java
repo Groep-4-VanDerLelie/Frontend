@@ -53,9 +53,8 @@ public class ViewNavigator {
 
         try {
             Locale selectedLocale = Locale.UK;
-            ResourceBundle languageBundle = ResourceBundle.getBundle("com/vanderlelie/frontend/languages/login-page", selectedLocale);
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
+            ResourceBundle languageBundle = ResourceBundle.getBundle("com/vanderlelie/frontend/languages/" + viewPath, selectedLocale);
+            
             URL fxmlResource = getClass().getResource(viewPath + ".fxml");
             if (fxmlResource == null) {
                 System.out.println("Couldn't find fxml resource");
