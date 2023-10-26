@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class ViewNavigator {
     private static ViewNavigator instance;
@@ -49,10 +52,17 @@ public class ViewNavigator {
         }
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource(viewPath + ".fxml"));
+            Locale selectedLocale = Locale.UK;
+            ResourceBundle languageBundle = ResourceBundle.getBundle("com/vanderlelie/frontend/languages/login-page", selectedLocale);
 
-            root = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            URL fxmlResource = getClass().getResource(viewPath + ".fxml");
+            if (fxmlResource == null) {
+                System.out.println("Couldn't find fxml resource");
+                return;
+            }
+
+            root = FXMLLoader.load(fxmlResource, languageBundle);
 
             if (scene == null) {
                 scene = new Scene(root);

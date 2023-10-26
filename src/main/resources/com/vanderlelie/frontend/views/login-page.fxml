@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="447.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.LoginView" stylesheets="@../styles/main.css">
+<BorderPane prefHeight="447.0" prefWidth="691.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.LoginView">
     <center>
         <VBox alignment="CENTER" spacing="15.0">
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="141.0" text="Sign In">
@@ -17,14 +17,14 @@
                <Insets />
             </BorderPane.margin></Label>
             <Label text="Sign in to start processing orders!" />
-            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Login">
+            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%LOGIN_PROMPT_TEXT">
             <VBox.margin>
                <Insets />
             </VBox.margin>
             <BorderPane.margin>
                <Insets top="15.0" />
             </BorderPane.margin></TextField>
-            <PasswordField fx:id="passwordInput"  maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password">
+            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="Password">
             <VBox.margin>
                <Insets />
             </VBox.margin></PasswordField>
@@ -39,7 +39,7 @@
                <CheckBox mnemonicParsing="false" text="Remember Me" BorderPane.alignment="CENTER" />
             </left>
             </BorderPane>
-            <Button onAction="#signIn" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" text="Login">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#signIn" prefHeight="30.0" prefWidth="250.0" text="Login">
             <VBox.margin>
                <Insets />
             </VBox.margin></Button>
