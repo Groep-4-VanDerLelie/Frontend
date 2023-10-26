@@ -5,24 +5,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane fx:controller="com.vanderlelie.frontend.views.SideMenuView" prefHeight="400.0" prefWidth="175.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="400.0" prefWidth="205.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.SideMenuView">
    <bottom>
-      <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar" BorderPane.alignment="CENTER">
-         <left>
-            <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
-         </left>
-         <center>
-            <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
-         </center>
-         <right>
-            <Button mnemonicParsing="false" text="&gt;" BorderPane.alignment="CENTER" />
-         </right>
+      <VBox>
+         <VBox>
+            <VBox>
+               <HBox styleClass="context-menu-bar, first">
+                  <Button>Icon</Button>
+                  <Button>Admin Page</Button>
+               </HBox>
+               <HBox styleClass="context-menu-bar">
+                  <Button>Icon</Button>
+                  <Button>View Logs</Button>
+               </HBox>
+               <HBox styleClass="context-menu-bar">
+                  <Button>Icon</Button>
+                  <Button>Select Language</Button>
+               </HBox>
+               <HBox styleClass="context-menu-bar, last">
+                  <Button>Icon</Button>
+                  <Button>Logout</Button>
+               </HBox>
+            </VBox>
+   
+            <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar">
+               <left>
+                  <Circle fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
+               </left>
+               <center>
+                  <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
+               </center>
+               <right>
+                  <Button mnemonicParsing="false" text="▴" BorderPane.alignment="CENTER" />
+               </right>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </BorderPane>
+         </VBox>
          <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
          </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </BorderPane>
+      </VBox>
    </bottom>
 </BorderPane>
