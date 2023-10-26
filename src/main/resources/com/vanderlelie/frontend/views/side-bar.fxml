@@ -10,7 +10,7 @@
    <bottom>
       <VBox>
          <VBox>
-            <VBox>
+            <VBox fx:id="userContextMenu">
                <HBox styleClass="context-menu-bar, first">
                   <Button>
                      <graphic>
@@ -69,7 +69,7 @@
                   <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
                </center>
                <right>
-                  <Button mnemonicParsing="false" text="▴" BorderPane.alignment="CENTER" />
+                  <Button onAction="#toggleUserMenu" mnemonicParsing="false" text="▴" BorderPane.alignment="CENTER" />
                </right>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
