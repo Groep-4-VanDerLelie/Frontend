@@ -26,6 +26,10 @@
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
+.danger-text {
+    -fx-text-fill: -red;
+}
+
 /* Hiding Tab Selection */
 .tab-pane {
     -fx-tab-max-height: 0 ;

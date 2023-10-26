@@ -1,11 +1,12 @@
 .root {
     -fx-font-family: "Open Sans", sans-serif;
+    -fx-font-size: 18px;
 
     -dark-blue: #002147;
     -cyan: #4BC8B6;
     -white: #ffffff;
     -green: #32bd3d;
-    -red: #fd5353;
+    -red: #FF5353;
 
     -shadow: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0)
 }
