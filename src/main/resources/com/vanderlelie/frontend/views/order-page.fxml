@@ -9,20 +9,20 @@
         <fx:include source="side-bar.fxml" />
     </left>
    <center>
-      <TabPane fx:id="orderTabs" >
+      <TabPane fx:id="orderTabs">
           <tabs>
               <Tab>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
                       <children>
-                          <Label text="Order Processing">
+                          <Label text="%ORDER_PROCESSING_TITLE">
                               <font>
                                   <Font size="26.0" />
                               </font>
                           </Label>
-                          <Label text="Scan and start processing orders!" />
+                          <Label text="%ORDER_PROCESSING_LABEL" />
                           <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
-                          <Label text="! hint lorem upsum" />
-                          <Button onAction="#processOrderNumber" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Start Processing" />
+                          <Label text="%ORDER_PROCESSING_HINT" />
+                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processOrderNumber" prefHeight="30.0" prefWidth="250.0" text="%START_PROCESSING_BUTTON" />
                       </children>
                   </VBox>
               </Tab>
