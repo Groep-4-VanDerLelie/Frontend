@@ -2,12 +2,18 @@ package com.vanderlelie.frontend.controllers;
 
 import com.vanderlelie.frontend.models.User;
 import com.vanderlelie.frontend.observers.AuthObserver;
+import com.vanderlelie.frontend.services.RequestService;
 
 public class AuthController {
     private User user = new User();
     private String username = "";
     private String password = "";
+    private RequestService requestService;
     static AuthController authController;
+
+    public AuthController() {
+        requestService = RequestService.getInstance();
+    }
 
     public static AuthController getInstance() {
         if (authController == null){
@@ -30,11 +36,12 @@ public class AuthController {
 
     public void login() {
         try {
-            String authCode = requestAuthCode();
-            String authToken = getTokenFromCode(authCode);
+            User loggedInUser = requestService.loginUser(username, password);
+            System.out.println(loggedInUser);
 
             this.user.notifyObservers(true);
         } catch (Exception e) {
+            e.printStackTrace();
             this.user.notifyObservers(false);
         }
     }
