@@ -48,6 +48,7 @@ public class ViewNavigator {
         switch (route) {
             case LOGIN -> viewPath = "login-page";
             case ORDER -> viewPath = "order-page";
+            case LOGGER -> viewPath = "logs-centre-page";
             default -> viewPath = "route-not-found";
         }
 

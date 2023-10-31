@@ -23,7 +23,7 @@
                   </Button>
                   <Button>Admin Page</Button>
                </HBox>
-               <HBox styleClass="context-menu-bar">
+               <HBox onMouseClicked="#navigateToLogsCentre" styleClass="context-menu-bar">
                   <Button>
                      <graphic>
                         <ImageView>
