@@ -18,6 +18,18 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 import com.google.gson.Gson;
 
+class TokenResponse {
+    private String token;
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return this.token;
+    }
+}
+
 public class RequestService {
     private final String API_URL = "http://localhost:8080/api";
     private final int API_TIMEOUT = 5;
@@ -45,7 +57,7 @@ public class RequestService {
             System.out.println("token");
             System.out.println(token);
 
-            return this.makeRequest(RequestMethod.GET, "/users/@me", new User());
+            return this.makeRequest(RequestMethod.GET, "/users/@me", User.class);
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Something went wrong while getting token");
@@ -59,19 +71,19 @@ public class RequestService {
         payload.addProperty("username", username);
         payload.addProperty("password", password);
 
-        JsonObject actualResponse = this.makeRequest(RequestMethod.POST, "/authenticate", new JsonObject(), payload.toString());
-        return actualResponse.get("token").getAsString();
+        TokenResponse tokenResponse = this.makeRequest(RequestMethod.POST, "/authenticate", TokenResponse.class, payload.toString());
+        return tokenResponse.getToken();
     }
 
     public User getUser() throws Exception {
-        return this.makeRequest(RequestMethod.GET, "/users", new User());
+        return this.makeRequest(RequestMethod.GET, "/users", User.class);
     }
 
     public Order getOrder() throws Exception {
-        return this.makeRequest(RequestMethod.GET, "/orders", new Order());
+        return this.makeRequest(RequestMethod.GET, "/orders", Order.class);
     }
 
-    private <R> R makeRequest(RequestMethod method, String path, R returnType, String payload) throws Exception {
+    private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {
         System.out.printf("[%s] %s%s \n", method, API_URL, path);
 
         try {
@@ -109,7 +121,7 @@ public class RequestService {
     }
 
     // No payload
-    private <R> R makeRequest(RequestMethod method, String path, R returnType) throws Exception {
+    private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType) throws Exception {
         return makeRequest(method, path, returnType, "Nothing");
     }
 
