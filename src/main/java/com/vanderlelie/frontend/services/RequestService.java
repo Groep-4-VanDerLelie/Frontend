@@ -89,7 +89,7 @@ public class RequestService {
         try {
             HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
                     .uri(new URI(API_URL + path))
-                    .header("Authorization", "Bearer" + token)
+                    .header("Authorization", "Bearer " + token)
                     .header("Content-Type", "application/json")
                     .timeout(Duration.ofSeconds(API_TIMEOUT));
 
