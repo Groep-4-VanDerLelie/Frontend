@@ -1,7 +1,6 @@
 package com.vanderlelie.frontend.services;
 
 import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 import com.vanderlelie.frontend.enums.RequestMethod;
 import com.vanderlelie.frontend.models.Order;
 import com.vanderlelie.frontend.models.User;
@@ -15,20 +14,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicReference;
+
 import com.google.gson.Gson;
-
-class TokenResponse {
-    private String token;
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
-}
+import com.vanderlelie.frontend.models.responses.TokenResponse;
 
 public class RequestService {
     private final String API_URL = "http://localhost:8080/api";
@@ -54,8 +42,6 @@ public class RequestService {
     public User loginUser(String username, String password) throws Exception {
         try {
             this.token = getToken(username, password);
-            System.out.println("token");
-            System.out.println(token);
 
             return this.makeRequest(RequestMethod.GET, "/users/@me", User.class);
         } catch (Exception e) {
@@ -108,7 +94,7 @@ public class RequestService {
             CompletableFuture<R> returnedResponse = responseFuture.thenApply((HttpResponse<String> response) -> {
                 System.out.println("Response code: " + response.statusCode());
                 System.out.println("Response body: " + response.body());
-                
+
                 return parseResponse(response.body(), returnType);
             });
 
@@ -125,7 +111,6 @@ public class RequestService {
     }
 
     private <R> R parseResponse(String responseBody, Type returnType) {
-        System.out.println("parsing as " + returnType);
         return new Gson().fromJson(responseBody, returnType);
     }
 }

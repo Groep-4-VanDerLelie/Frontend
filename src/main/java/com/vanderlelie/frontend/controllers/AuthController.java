@@ -37,7 +37,6 @@ public class AuthController {
     public void login() {
         try {
             User loggedInUser = requestService.loginUser(username, password);
-            System.out.println(loggedInUser);
 
             this.user.notifyObservers(true);
         } catch (Exception e) {
