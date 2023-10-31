@@ -26,6 +26,18 @@
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
+.danger-text {
+    -fx-text-fill: -red;
+}
+
+.user-icon {
+    -fx-fill: -grey;
+}
+
+#user-menu-toggle {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
 /* Hiding Tab Selection */
 .tab-pane {
     -fx-tab-max-height: 0 ;

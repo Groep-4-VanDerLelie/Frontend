@@ -8,7 +8,7 @@
 
 <BorderPane prefHeight="447.0" prefWidth="691.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.LoginView">
     <center>
-        <VBox alignment="CENTER" spacing="15.0">
+        <VBox alignment="CENTER" spacing="20.0">
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="356.0" text="%SIGN_IN_TITLE">
                 <font>
                     <Font size="27.0" />
@@ -17,18 +17,18 @@
                <Insets />
             </BorderPane.margin></Label>
             <Label text="%SIGN_IN_LABEL" />
-            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%LOGIN_PROMPT">
+            <TextField fx:id="usernameInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="%LOGIN_PROMPT">
             <VBox.margin>
                <Insets />
             </VBox.margin>
             <BorderPane.margin>
                <Insets top="15.0" />
             </BorderPane.margin></TextField>
-            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" promptText="%PASSWORD_PROMPT">
+            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="%PASSWORD_PROMPT">
             <VBox.margin>
                <Insets />
             </VBox.margin></PasswordField>
-            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0">
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0">
                 <right>
                     <Label alignment="CENTER" text="%FORGOT_PASSWORD" BorderPane.alignment="CENTER" />
                 </right>
@@ -39,7 +39,7 @@
                <CheckBox mnemonicParsing="false" text="%REMEMBER_ME" BorderPane.alignment="CENTER" />
             </left>
             </BorderPane>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#signIn" prefHeight="30.0" prefWidth="250.0" text="%LOGIN_BUTTON">
+            <Button maxHeight="-Infinity" maxWidth="-Infinity" onAction="#signIn" prefHeight="45.0" prefWidth="400.0" text="%LOGIN_BUTTON">
             <VBox.margin>
                <Insets />
             </VBox.margin></Button>
