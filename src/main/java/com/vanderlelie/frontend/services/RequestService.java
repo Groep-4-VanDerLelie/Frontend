@@ -108,9 +108,8 @@ public class RequestService {
             CompletableFuture<R> returnedResponse = responseFuture.thenApply((HttpResponse<String> response) -> {
                 System.out.println("Response code: " + response.statusCode());
                 System.out.println("Response body: " + response.body());
-
-                Type actualReturnType = new TypeToken<R>() {}.getType();
-                return parseResponse(response.body(), actualReturnType);
+                
+                return parseResponse(response.body(), returnType);
             });
 
             return returnedResponse.join();
