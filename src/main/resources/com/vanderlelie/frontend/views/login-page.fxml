@@ -24,7 +24,7 @@
             <BorderPane.margin>
                <Insets top="15.0" />
             </BorderPane.margin></TextField>
-            <PasswordField fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="%PASSWORD_PROMPT">
+            <PasswordField onAction="#signIn" fx:id="passwordInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="%PASSWORD_PROMPT">
             <VBox.margin>
                <Insets />
             </VBox.margin></PasswordField>
