@@ -2,6 +2,7 @@ package com.vanderlelie.frontend.services;
 
 import com.google.gson.JsonObject;
 import com.vanderlelie.frontend.enums.RequestMethod;
+import com.vanderlelie.frontend.models.Log;
 import com.vanderlelie.frontend.models.Order;
 import com.vanderlelie.frontend.models.User;
 
@@ -13,6 +14,7 @@ import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.Gson;
@@ -67,6 +69,10 @@ public class RequestService {
 
     public Order getOrder() throws Exception {
         return this.makeRequest(RequestMethod.GET, "/orders", Order.class);
+    }
+
+    public Log[] getLogs() throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
     }
 
     private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {
