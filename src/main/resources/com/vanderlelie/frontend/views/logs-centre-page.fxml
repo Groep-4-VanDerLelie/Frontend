@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -16,10 +17,13 @@
                <font>
                   <Font size="35.0" />
                </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </Label>
-             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" >
-                 <TextField onAction="#searchLogsByQuery" fx:id="searchInput" promptText="Search for logs" />
-                 <Button onAction="#searchLogsByQuery" id="search-logs-button" StackPane.alignment="CENTER_RIGHT">
+             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0">
+                 <TextField fx:id="searchInput" onAction="#searchLogsByQuery" promptText="Search for logs" />
+                 <Button id="search-logs-button" onAction="#searchLogsByQuery" StackPane.alignment="CENTER_RIGHT">
                      <graphic>
                          <ImageView>
                              <fitWidth>25</fitWidth>
@@ -29,7 +33,11 @@
                      </graphic>
                  </Button>
              </StackPane>
-             <Label fx:id="resultsCountLabel" text="Results (Showing 10 of 100)" />
+             <Label fx:id="resultsCountLabel" text="Results (Showing 10 of 100)">
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin></Label>
+            <Pagination fx:id="resultsPagination" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </center>

@@ -47,4 +47,13 @@ public class Log {
     public void setArchiver(User archiver) {
         this.archiver = archiver;
     }
+
+    @Override
+    public String toString() {
+        String logUsername = "Luke";
+        String logProductName = "Hema Large Packaging";
+        String logDate = "(12:31pm 11 sept 2023)";
+
+        return logUsername + " - " + logProductName + " " + logDate;
+    }
 }
