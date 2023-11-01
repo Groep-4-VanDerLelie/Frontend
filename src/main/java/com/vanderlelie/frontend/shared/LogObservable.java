@@ -1,14 +1,14 @@
 package com.vanderlelie.frontend.shared;
 
 import com.vanderlelie.frontend.models.Log;
-import com.vanderlelie.frontend.models.Order;
-import com.vanderlelie.frontend.observers.LogObserver;
-import com.vanderlelie.frontend.observers.OrderObserver;
+import com.vanderlelie.frontend.observers.LogResultObserver;
+
+import java.util.ArrayList;
 
 public interface LogObservable {
-    void registerObserver(LogObserver logObserver);
+    void registerObserver(LogResultObserver logObserver);
 
-    void unregisterObserver(LogObserver logObserver);
+    void unregisterObserver(LogResultObserver logObserver);
 
-    void notifyObservers(Log log);
+    void notifyObservers(ArrayList<Log> logs);
 }

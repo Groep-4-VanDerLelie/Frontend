@@ -72,7 +72,25 @@ public class RequestService {
     }
 
     public Log[] getLogs() throws Exception {
-        return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
+        Log mock1 = new Log();
+        mock1.setLogId(1L);
+        mock1.setArchived(true);
+        mock1.setArchiver(new User());
+        mock1.setOrderId(100L);
+
+        Log mock2 = new Log();
+        mock1.setLogId(2L);
+        mock1.setArchived(false);
+        mock1.setOrderId(200L);
+
+        Log mock3 = new Log();
+        mock1.setLogId(3L);
+        mock1.setArchived(false);
+        mock1.setOrderId(300L);
+
+        return new Log[]{mock1, mock2, mock3};
+
+        // return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
     }
 
     private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {

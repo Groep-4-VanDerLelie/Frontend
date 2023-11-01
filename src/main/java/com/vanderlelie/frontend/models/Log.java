@@ -1,38 +1,50 @@
 package com.vanderlelie.frontend.models;
 
-import com.vanderlelie.frontend.observers.LogObserver;
-import com.vanderlelie.frontend.observers.OrderObserver;
+import com.vanderlelie.frontend.observers.LogResultObserver;
 import com.vanderlelie.frontend.shared.LogObservable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Log implements LogObservable {
-    private List<LogObserver> observers = new ArrayList<>();
-    @Override
-    public void registerObserver(LogObserver logObserver) {
-        this.observers.add(logObserver);
+public class Log {
+    private Long logId;
+    private Long orderId;
+    private boolean isArchived;
+    private User archiver;
+
+    public Log(){
+
     }
 
-    @Override
-    public void unregisterObserver(LogObserver logObserver) {
-        this.observers.remove(logObserver);
+    public Long getLogId() {
+        return logId;
     }
 
-    @Override
-    public void notifyObservers(Log log) {
-        ArrayList<Integer> observersToRemove = new ArrayList<>();
+    public void setLogId(Long logId) {
+        this.logId = logId;
+    }
 
-        for (int i = 0; i < observers.size(); i++) {
-            LogObserver observer = observers.get(i);
-            boolean markedForRemoval = observer.update(log);
-            if (markedForRemoval) {
-                observersToRemove.add(i);
-            }
-        }
+    public Long getOrderId() {
+        return orderId;
+    }
 
-        for (int indexToRemove: observersToRemove) {
-            observers.remove(indexToRemove);
-        }
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
+    }
+
+    public User getArchiver() {
+        return archiver;
+    }
+
+    public void setArchiver(User archiver) {
+        this.archiver = archiver;
     }
 }

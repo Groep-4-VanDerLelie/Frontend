@@ -1,14 +1,16 @@
 package com.vanderlelie.frontend.controllers;
 
 import com.vanderlelie.frontend.models.Log;
-import com.vanderlelie.frontend.models.Order;
-import com.vanderlelie.frontend.observers.LogObserver;
-import com.vanderlelie.frontend.observers.OrderObserver;
+import com.vanderlelie.frontend.models.responses.LogResponse;
+import com.vanderlelie.frontend.observers.LogResultObserver;
+import com.vanderlelie.frontend.services.RequestService;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LogsController {
-    private Log log = new Log();
+    private LogResponse logResponse = new LogResponse();
+    private RequestService requestService = RequestService.getInstance();
     static LogsController logsController;
 
     public static LogsController getInstance() {
@@ -19,7 +21,13 @@ public class LogsController {
         return logsController;
     }
 
-    public void registerLogObserver(LogObserver logView) {
-        this.log.registerObserver(logView);
+    public void searchLogsByQuery(String query) throws Exception {
+        Log[] logs = requestService.getLogs();
+
+        this.logResponse.setLogs(new ArrayList<>(Arrays.asList(logs)));
+    }
+
+    public void registerLogObserver(LogResultObserver logView) {
+        this.logResponse.registerObserver(logView);
     }
 }

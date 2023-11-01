@@ -16,8 +16,10 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <TextArea maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="Search for logs" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <TextField fx:id="searchInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="Search for logs" />
+             <Button onAction="#searchLogsByQuery"/>
+             <Label fx:id="resultsCountLabel" text="Showing results (10 of 100)"></Label>
+             <ScrollPane prefHeight="200.0" prefWidth="200.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
               </content>
