@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -16,14 +17,19 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <TextField fx:id="searchInput" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" promptText="Search for logs" />
-             <Button onAction="#searchLogsByQuery"/>
-             <Label fx:id="resultsCountLabel" text="Showing results (10 of 100)"></Label>
-             <ScrollPane prefHeight="200.0" prefWidth="200.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-              </content>
-            </ScrollPane>
+             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" >
+                 <TextField onAction="#searchLogsByQuery" fx:id="searchInput" promptText="Search for logs" />
+                 <Button onAction="#searchLogsByQuery" id="search-logs-button" StackPane.alignment="CENTER_RIGHT">
+                     <graphic>
+                         <ImageView>
+                             <fitWidth>25</fitWidth>
+                             <fitHeight>25</fitHeight>
+                             <Image url="@../images/search-icon.png" />
+                         </ImageView>
+                     </graphic>
+                 </Button>
+             </StackPane>
+             <Label fx:id="resultsCountLabel" text="Results (Showing 10 of 100)" />
          </children>
       </VBox>
    </center>

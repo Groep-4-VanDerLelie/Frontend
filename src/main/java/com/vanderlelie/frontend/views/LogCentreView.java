@@ -4,6 +4,7 @@ import com.vanderlelie.frontend.controllers.LogsController;
 import com.vanderlelie.frontend.models.Log;
 import com.vanderlelie.frontend.observers.LogResultObserver;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -22,7 +23,7 @@ public class LogCentreView implements LogResultObserver {
         this.logsController.registerLogObserver(this);
     }
 
-    public void searchLogsByQuery(ActionEvent actionEvent) {
+    public void searchLogsByQuery(Event _event) {
         String query = searchInput.getText();
 
         try {
@@ -35,7 +36,8 @@ public class LogCentreView implements LogResultObserver {
 
     @Override
     public boolean update(ArrayList<Log> logs) {
-        resultsCountLabel.setText(String.format("Showing results (%s of %s)", 10, logs.size()));
+        Toast.show(String.format("Found %s results!", logs.size()), searchInput, true);
+        resultsCountLabel.setText(String.format("Results (Showing %s of %s)", 10, logs.size()));
 
         return false;
     }
