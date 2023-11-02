@@ -138,3 +138,38 @@
     -fx-background-color: -cyan;
     -fx-text-fill: -white;
 }
+
+/* Log Details Styling */
+.log-details-container {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.log-details-content {
+    -fx-background-color: -dark-blue;
+    -fx-background-radius: 0.5em;
+    -fx-padding: 10;
+}
+
+.log-details-content .label {
+    -fx-text-fill: -white;
+    -fx-font-size: 16px;
+}
+
+.log-details-content .label.title {
+    -fx-font-size: 20px;
+}
+
+.log-date-label {
+    -fx-text-fill: -grey;
+    -fx-font-size: 10px;
+}
+
+.log-archive-button {
+    -fx-background-color: -red;
+    -fx-text-fill: -white;
+}
+
+.log-restore-button {
+    -fx-background-color: -white;
+    -fx-text-fill: grey;
+}

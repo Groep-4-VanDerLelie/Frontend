@@ -10,9 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,7 +23,10 @@ import java.util.List;
 public class LogCentreView implements LogResultObserver {
     private final int ENTRIES_PER_PAGE = 16;
     private final double LOG_ENTRY_MARGIN = 7.5;
+    private final int INFO_BOX_TOP_MARGIN = 15;
     private HashMap<Integer, List<Log>> logsMap = new HashMap<>();
+    @FXML
+    private StackPane rootPane;
     @FXML
     private TextField searchInput;
     @FXML
@@ -61,6 +65,9 @@ public class LogCentreView implements LogResultObserver {
         Button logInfoButton = new Button();
         logInfoButton.setAlignment(Pos.CENTER_RIGHT);
         logInfoButton.getStyleClass().add("log-info-button");
+        logInfoButton.setOnAction(e -> {
+            this.showLogDetailsPage(log);
+        });
         HBox.setMargin(logInfoButton, new Insets(0, 0, 0, LOG_ENTRY_MARGIN));
 
         logBox.getChildren().addAll(logLabel, logInfoButton);
@@ -90,6 +97,76 @@ public class LogCentreView implements LogResultObserver {
 
         mainHolder.getChildren().addAll(leftSide, rightSide);
         return mainHolder;
+    }
+
+    public void showLogDetailsPage(Log log) {
+        rootPane.getChildren().add(createLogDetailsPage(log));
+    }
+
+    private BorderPane createLogDetailsPage(Log log) {
+        BorderPane mainContainer = new BorderPane();
+        mainContainer.getStyleClass().add("log-details-container");
+
+        VBox detailsContainer = new VBox();
+        detailsContainer.setMaxSize(600, 450);
+        detailsContainer.getStyleClass().add("log-details-content");
+
+        VBox logInfo = new VBox();
+        Label logTitle = new Label("Hema (3402030)");
+        logTitle.getStyleClass().add("title");
+        Rectangle logTitleUnderLine = new Rectangle(200, 5);
+        logTitleUnderLine.setFill(Color.rgb(75, 200, 182));
+        Label logDateLabel = new Label("Processed on 11 sept 2023 (12:32 pm)");
+        logDateLabel.getStyleClass().add("log-date-label");
+        VBox.setMargin(logInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
+        logInfo.getChildren().addAll(logTitle, logTitleUnderLine, logDateLabel);
+
+        HBox packagingAndArchiveInfo = new HBox();
+        VBox packagingInfo = new VBox();
+        Label packagingInfoTitle = new Label("Packaging Info");
+        packagingInfoTitle.getStyleClass().add("title");
+        Label packagingInfoSubUsed = new Label("Used: Hema Large");
+        Label packagingInfoSubDefault = new Label("Default: Hema Small");
+        HBox.setMargin(packagingInfo, new Insets(0, INFO_BOX_TOP_MARGIN * 8, 0, 0));
+        packagingInfo.getChildren().addAll(packagingInfoTitle, packagingInfoSubUsed, packagingInfoSubDefault);
+
+        VBox archiveInfo = new VBox();
+        Label archiveInfoTitle = new Label("Archive Info");
+        archiveInfoTitle.getStyleClass().add("title");
+        Label archiveInfoSubUsed = new Label("By: John Doe");
+        Label archiveInfoSubDefault = new Label("Date: 11 sept 2023 (12:42 pm)");
+        archiveInfo.getChildren().addAll(archiveInfoTitle, archiveInfoSubUsed, archiveInfoSubDefault);
+        packagingAndArchiveInfo.getChildren().addAll(packagingInfo, archiveInfo);
+
+        VBox productInfo = new VBox();
+        Label productInfoTitle = new Label("Product Info");
+        productInfoTitle.getStyleClass().add("title");
+        Label productInfoSubName = new Label("Name: Hema Gordijn (24e90290)");
+        Label productInfoSubSize = new Label("Size: 30cm x 25cm");
+        Label productInfoSubType = new Label("Type: Hanger");
+        VBox.setMargin(productInfo, new Insets(INFO_BOX_TOP_MARGIN, 0, 0, 0));
+        productInfo.getChildren().addAll(productInfoTitle, productInfoSubName, productInfoSubSize, productInfoSubType);
+
+        HBox bottomBar = new HBox();
+        bottomBar.setAlignment(Pos.BOTTOM_CENTER);
+        bottomBar.setSpacing(10);
+        HBox userInfo = new HBox();
+        userInfo.setSpacing(10);
+        Circle userIcon = new Circle(15, Color.GREY);
+        Label userLabel = new Label("Processed by John Doe");
+        Button archiveButton = new Button("Archive");
+        archiveButton.getStyleClass().add("log-archive-button");
+        archiveButton.setAlignment(Pos.BOTTOM_RIGHT);
+        userInfo.setAlignment(Pos.BOTTOM_LEFT);
+        userInfo.getChildren().addAll(userIcon, userLabel);
+        bottomBar.getChildren().addAll(userInfo, archiveButton);
+        HBox.setHgrow(userInfo, Priority.ALWAYS);
+        HBox.setHgrow(bottomBar, Priority.ALWAYS);
+        VBox.setVgrow(bottomBar, Priority.ALWAYS);
+
+        detailsContainer.getChildren().addAll(logInfo, packagingAndArchiveInfo, productInfo, bottomBar);
+        mainContainer.setCenter(detailsContainer);
+        return mainContainer;
     }
 
     @Override
