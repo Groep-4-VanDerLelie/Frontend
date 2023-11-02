@@ -1,5 +1,6 @@
 package com.vanderlelie.frontend.services;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.vanderlelie.frontend.enums.RequestMethod;
 import com.vanderlelie.frontend.models.Log;
@@ -107,7 +108,7 @@ public class RequestService {
                     System.out.println("Missing code or payload");
                 }
 
-                return parseResponse(responseObject.getPayload().toString(), returnType);
+                return parseResponse(new Gson().toJson(responseObject.getPayload()), returnType);
             });
 
             return returnedResponse.join();
@@ -123,6 +124,7 @@ public class RequestService {
     }
 
     private <R> R parseResponse(String responseBody, Type returnType) {
-        return new Gson().fromJson(responseBody, returnType);
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+        return gson.fromJson(responseBody, returnType);
     }
 }

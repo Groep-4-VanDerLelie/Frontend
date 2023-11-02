@@ -114,7 +114,7 @@ public class LogCentreView implements LogResultObserver {
             if (e.getPickResult().getIntersectedNode() != mainContainer) {
                 return;
             }
-            
+
             this.hideLogDetailsPage();
         });
 
@@ -123,11 +123,11 @@ public class LogCentreView implements LogResultObserver {
         detailsContainer.getStyleClass().add("log-details-content");
 
         VBox logInfo = new VBox();
-        Label logTitle = new Label("Hema (3402030)");
+        Label logTitle = new Label(String.format("Hema (%s)", log.getOrderObject().getId()));
         logTitle.getStyleClass().add("title");
         Rectangle logTitleUnderLine = new Rectangle(200, 5);
         logTitleUnderLine.setFill(Color.rgb(75, 200, 182));
-        Label logDateLabel = new Label("Processed on 11 sept 2023 (12:32 pm)");
+        Label logDateLabel = new Label(String.format("Processed on %s", log.getOrderObject().getDate()));
         logDateLabel.getStyleClass().add("log-date-label");
         VBox.setMargin(logInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
         logInfo.getChildren().addAll(logTitle, logTitleUnderLine, logDateLabel);
@@ -141,11 +141,19 @@ public class LogCentreView implements LogResultObserver {
         HBox.setMargin(packagingInfo, new Insets(0, INFO_BOX_TOP_MARGIN * 8, 0, 0));
         packagingInfo.getChildren().addAll(packagingInfoTitle, packagingInfoSubUsed, packagingInfoSubDefault);
 
+        String archiverName = log.getUserObject() == null ?
+                "None" :
+                log.getUserObject().getFirstName() + " " + log.getUserObject().getLastName();
+        String archivedDate = log.getUserObject() == null ?
+                "Never":
+                log.getOrderObject().getDate();
+
+
         VBox archiveInfo = new VBox();
         Label archiveInfoTitle = new Label("Archive Info");
         archiveInfoTitle.getStyleClass().add("title");
-        Label archiveInfoSubUsed = new Label("By: John Doe");
-        Label archiveInfoSubDefault = new Label("Date: 11 sept 2023 (12:42 pm)");
+        Label archiveInfoSubUsed = new Label(String.format("By: %s", archiverName));
+        Label archiveInfoSubDefault = new Label(String.format("Date: %s", archivedDate));
         archiveInfo.getChildren().addAll(archiveInfoTitle, archiveInfoSubUsed, archiveInfoSubDefault);
         packagingAndArchiveInfo.getChildren().addAll(packagingInfo, archiveInfo);
 

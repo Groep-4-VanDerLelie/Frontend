@@ -5,47 +5,75 @@ import com.vanderlelie.frontend.shared.LogObservable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Log {
-    private Long logId;
-    private Long orderId;
-    private boolean isArchived;
-    private User archiver;
+    private UUID id;
+    private UUID order;
+    private UUID archiver;
+    private Order orderObject;
+    private UUID customer;
+    private UUID user;
+    private User userObject;
 
     public Log(){
 
     }
 
-    public Long getLogId() {
-        return logId;
+    public UUID getId() {
+        return id;
     }
 
-    public void setLogId(Long logId) {
-        this.logId = logId;
+    public UUID getOrder() {
+        return order;
     }
 
-    public Long getOrderId() {
-        return orderId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
+    public void setOrder(UUID order) {
+        this.order = order;
     }
 
-    public boolean isArchived() {
-        return isArchived;
-    }
-
-    public void setArchived(boolean archived) {
-        isArchived = archived;
-    }
-
-    public User getArchiver() {
+    public UUID getArchiver() {
         return archiver;
     }
 
-    public void setArchiver(User archiver) {
+    public void setArchiver(UUID archiver) {
         this.archiver = archiver;
+    }
+
+    public Order getOrderObject() {
+        return orderObject;
+    }
+
+    public void setOrderObject(Order orderObject) {
+        this.orderObject = orderObject;
+    }
+
+    public UUID getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UUID customer) {
+        this.customer = customer;
+    }
+
+    public UUID getUser() {
+        return user;
+    }
+
+    public void setUser(UUID user) {
+        this.user = user;
+    }
+
+    public User getUserObject() {
+        return userObject;
+    }
+
+    public void setUserObject(User userObject) {
+        this.userObject = userObject;
     }
 
     @Override
