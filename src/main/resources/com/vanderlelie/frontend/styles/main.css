@@ -101,8 +101,15 @@
 }
 
 /* Logging Centre Styling */
-#search-logs-button {
+#search-logs-button, .log-info-button {
     -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.log-info-button {
+    -fx-background-image: url("../images/info-icon.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
 }
 
 .log-entry {

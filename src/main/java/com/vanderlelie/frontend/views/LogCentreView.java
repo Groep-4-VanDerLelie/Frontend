@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,16 +48,18 @@ public class LogCentreView implements LogResultObserver {
     }
 
     private HBox createLogHBox(Log log) {
-        StackPane logBox = new StackPane();
+        HBox logBox = new HBox();
         logBox.getStyleClass().add("log-entry");
+        logBox.setAlignment(Pos.CENTER_LEFT);
 
         Label logLabel = new Label();
         logLabel.setText(log.toString());
+        logLabel.setAlignment(Pos.CENTER_LEFT);
 
-        //ImageView logInfoButtonImage = new ImageView(getClass().getResource("com/vanderlelie/frontend/images/settings-icon.png").toExternalForm());
         Button logInfoButton = new Button();
         logInfoButton.setAlignment(Pos.CENTER_RIGHT);
-        //logInfoButton.setGraphic(logInfoButtonImage);
+        logInfoButton.getStyleClass().add("log-info-button");
+        HBox.setMargin(logInfoButton, new Insets(0, 0, 0, LOG_ENTRY_MARGIN));
 
         logBox.getChildren().addAll(logLabel, logInfoButton);
 
