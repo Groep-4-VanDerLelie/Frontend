@@ -44,6 +44,10 @@ public class SideMenuView implements AuthObserver {
         ViewNavigator.getInstance().navigateTo(ViewRoute.LOGGER);
     }
 
+    public void navigateToAdminPage() {
+        ViewNavigator.getInstance().navigateTo(ViewRoute.ADMIN);
+    }
+
     @Override
     public boolean update(boolean authorized) {
         return false;
