@@ -148,6 +148,9 @@ public class StockView implements StockResultObserver {
         Button closePanelButton = new Button("X");
         closePanelButton.setMaxSize(20, 20);
         closePanelButton.getStyleClass().add("panel-close-button");
+        closePanelButton.setOnAction(e -> {
+            this.hidePackagingDetailsPage();
+        });
         closePanelButton.setAlignment(Pos.CENTER_RIGHT);
 
         HBox.setHgrow(packageInfo, Priority.ALWAYS);
