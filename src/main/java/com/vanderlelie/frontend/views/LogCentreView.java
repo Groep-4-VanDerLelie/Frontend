@@ -6,9 +6,12 @@ import com.vanderlelie.frontend.observers.LogResultObserver;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
 
 public class LogCentreView implements LogResultObserver {
     private final int ENTRIES_PER_PAGE = 16;
+    private final double LOG_ENTRY_MARGIN = 7.5;
     private HashMap<Integer, List<Log>> logsMap = new HashMap<>();
     @FXML
     private TextField searchInput;
@@ -43,21 +47,28 @@ public class LogCentreView implements LogResultObserver {
     }
 
     private HBox createLogHBox(Log log) {
-        HBox logBox = new HBox();
+        StackPane logBox = new StackPane();
+        logBox.getStyleClass().add("log-entry");
+
         Label logLabel = new Label();
         logLabel.setText(log.toString());
 
         //ImageView logInfoButtonImage = new ImageView(getClass().getResource("com/vanderlelie/frontend/images/settings-icon.png").toExternalForm());
         Button logInfoButton = new Button();
+        logInfoButton.setAlignment(Pos.CENTER_RIGHT);
         //logInfoButton.setGraphic(logInfoButtonImage);
 
         logBox.getChildren().addAll(logLabel, logInfoButton);
 
-        return logBox;
+        HBox marginWrapper = new HBox(logBox);
+        HBox.setMargin(logBox, new Insets(LOG_ENTRY_MARGIN));
+
+        return marginWrapper;
     }
 
     private HBox createAllLogsHBox(int pageIndex) {
         HBox mainHolder = new HBox();
+        mainHolder.setAlignment(Pos.CENTER);
 
         List<Log> currentPageLogs = logsMap.get(pageIndex);
         VBox leftSide = new VBox();
