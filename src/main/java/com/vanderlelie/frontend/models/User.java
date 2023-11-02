@@ -5,21 +5,57 @@ import com.vanderlelie.frontend.shared.AuthObservable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class User implements AuthObservable {
-    private String username;
+    private UUID id;
+    private String lastName;
+    private String firstName;
+    private boolean admin;
     private List<AuthObserver> observers = new ArrayList<>();
 
     public User() {
-        this.username = "John Doe";
+        this.firstName = "John Doe";
     }
 
     public User(String username) {
-        this.username = username;
+        this.firstName = username;
     }
 
     public String getUsername() {
-        return this.username;
+        return this.firstName;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override

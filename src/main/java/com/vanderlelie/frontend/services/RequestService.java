@@ -1,7 +1,9 @@
 package com.vanderlelie.frontend.services;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.vanderlelie.frontend.enums.RequestMethod;
+import com.vanderlelie.frontend.models.Log;
 import com.vanderlelie.frontend.models.Order;
 import com.vanderlelie.frontend.models.User;
 
@@ -13,9 +15,11 @@ import java.net.http.HttpClient.Version;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.Gson;
+import com.vanderlelie.frontend.models.responses.GenericResponse;
 import com.vanderlelie.frontend.models.responses.TokenResponse;
 
 public class RequestService {
@@ -69,6 +73,10 @@ public class RequestService {
         return this.makeRequest(RequestMethod.GET, "/orders", Order.class);
     }
 
+    public Log[] getLogs() throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
+    }
+
     private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {
         System.out.printf("[%s] %s%s \n", method, API_URL, path);
 
@@ -95,7 +103,12 @@ public class RequestService {
                 System.out.println("Response code: " + response.statusCode());
                 System.out.println("Response body: " + response.body());
 
-                return parseResponse(response.body(), returnType);
+                GenericResponse<R> responseObject = parseResponse(response.body(), GenericResponse.class);
+                if (responseObject.getCode() == null || responseObject.getPayload() == null) {
+                    System.out.println("Missing code or payload");
+                }
+
+                return parseResponse(new Gson().toJson(responseObject.getPayload()), returnType);
             });
 
             return returnedResponse.join();
@@ -111,6 +124,7 @@ public class RequestService {
     }
 
     private <R> R parseResponse(String responseBody, Type returnType) {
-        return new Gson().fromJson(responseBody, returnType);
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
+        return gson.fromJson(responseBody, returnType);
     }
 }

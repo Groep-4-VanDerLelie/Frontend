@@ -8,6 +8,7 @@
     -grey: #939393;
     -green: #32bd3d;
     -red: #FF5353;
+    -black: #000000;
 
     -shadow: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0)
 }

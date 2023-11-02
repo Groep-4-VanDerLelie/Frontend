@@ -1,6 +1,7 @@
 package com.vanderlelie.frontend.views;
 
 import com.vanderlelie.frontend.controllers.AuthController;
+import com.vanderlelie.frontend.enums.ViewRoute;
 import com.vanderlelie.frontend.models.User;
 import com.vanderlelie.frontend.observers.AuthObserver;
 import javafx.fxml.FXML;
@@ -37,6 +38,10 @@ public class SideMenuView implements AuthObserver {
 
         String toggleIcon = userContextMenu.isVisible() ? "▴" : "▾";
         userMenuToggle.setText(toggleIcon);
+    }
+
+    public void navigateToLogsCentre() {
+        ViewNavigator.getInstance().navigateTo(ViewRoute.LOGGER);
     }
 
     @Override
