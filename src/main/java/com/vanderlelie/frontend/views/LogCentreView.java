@@ -103,9 +103,20 @@ public class LogCentreView implements LogResultObserver {
         rootPane.getChildren().add(createLogDetailsPage(log));
     }
 
+    public void hideLogDetailsPage() {
+        rootPane.getChildren().remove(1);
+    }
+
     private BorderPane createLogDetailsPage(Log log) {
         BorderPane mainContainer = new BorderPane();
         mainContainer.getStyleClass().add("log-details-container");
+        mainContainer.setOnMouseClicked(e -> {
+            if (e.getPickResult().getIntersectedNode() != mainContainer) {
+                return;
+            }
+            
+            this.hideLogDetailsPage();
+        });
 
         VBox detailsContainer = new VBox();
         detailsContainer.setMaxSize(600, 450);
