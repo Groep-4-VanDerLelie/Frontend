@@ -48,24 +48,6 @@
     -fx-padding: -20 0 0 0;
 }
 
-/* Toast Styling */
-.toast {
-    -fx-padding: 10;
-    -fx-border-width: 5;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-background-radius: 4px;
-    -fx-effect: -shadow;
-}
-
-.success {
-    -fx-background-color: -green;
-}
-
-.error {
-    -fx-background-color: -red;
-}
-
 /* Button Styling */
 .button {
     -fx-background-radius: 0.5em;

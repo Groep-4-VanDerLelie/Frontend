@@ -1,19 +1,12 @@
 package com.vanderlelie.frontend.views;
 
 import com.vanderlelie.frontend.enums.ViewRoute;
-import javafx.animation.*;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,9 +47,9 @@ public class ViewNavigator {
 
         try {
             Locale selectedLocale = Locale.UK;
-            ResourceBundle languageBundle = ResourceBundle.getBundle("com/vanderlelie/frontend/languages/" + viewPath, selectedLocale);
+            ResourceBundle languageBundle = ResourceBundle.getBundle("languages/" + viewPath, selectedLocale);
             
-            URL fxmlResource = getClass().getResource(viewPath + ".fxml");
+            URL fxmlResource = getClass().getResource("/views/" + viewPath + ".fxml");
             if (fxmlResource == null) {
                 System.out.println("Couldn't find fxml resource");
                 return;

@@ -1,0 +1,16 @@
+.toast {
+    -fx-padding: 10;
+    -fx-border-width: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.success {
+    -fx-background-color: #32bd3d;
+}
+
+.error {
+    -fx-background-color: #FF5353;
+}

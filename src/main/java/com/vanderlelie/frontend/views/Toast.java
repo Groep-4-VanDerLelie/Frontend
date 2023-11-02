@@ -9,6 +9,8 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.net.URL;
+
 public class Toast {
 
     private static int TOAST_TIMEOUT = 3000;
@@ -19,6 +21,10 @@ public class Toast {
         Label label = new Label(message);
         label.getStyleClass().add("toast");
         label.getStyleClass().add(isSuccess ? "success" : "error");
+
+        URL fxmlResource = Toast.class.getResource("/styles/toast.css");
+        label.getStylesheets().add(fxmlResource.toExternalForm());
+
         popup.getContent().add(label);
         return popup;
     }
