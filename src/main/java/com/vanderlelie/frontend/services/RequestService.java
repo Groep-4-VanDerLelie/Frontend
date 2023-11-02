@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.Gson;
+import com.vanderlelie.frontend.models.responses.GenericResponse;
 import com.vanderlelie.frontend.models.responses.TokenResponse;
 
 public class RequestService {
@@ -72,25 +73,7 @@ public class RequestService {
     }
 
     public Log[] getLogs() throws Exception {
-        Log mock1 = new Log();
-        mock1.setLogId(1L);
-        mock1.setArchived(true);
-        mock1.setArchiver(new User());
-        mock1.setOrderId(100L);
-
-        Log mock2 = new Log();
-        mock1.setLogId(2L);
-        mock1.setArchived(false);
-        mock1.setOrderId(200L);
-
-        Log mock3 = new Log();
-        mock1.setLogId(3L);
-        mock1.setArchived(false);
-        mock1.setOrderId(300L);
-
-        return new Log[]{mock1, mock2, mock3};
-
-        // return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
+        return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
     }
 
     private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {
@@ -119,7 +102,12 @@ public class RequestService {
                 System.out.println("Response code: " + response.statusCode());
                 System.out.println("Response body: " + response.body());
 
-                return parseResponse(response.body(), returnType);
+                GenericResponse<R> responseObject = parseResponse(response.body(), GenericResponse.class);
+                if (responseObject.getCode() == null || responseObject.getPayload() == null) {
+                    System.out.println("Missing code or payload");
+                }
+
+                return parseResponse(responseObject.getPayload().toString(), returnType);
             });
 
             return returnedResponse.join();
