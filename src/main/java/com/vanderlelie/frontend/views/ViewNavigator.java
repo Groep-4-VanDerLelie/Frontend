@@ -2,10 +2,12 @@ package com.vanderlelie.frontend.views;
 
 import com.vanderlelie.frontend.enums.ViewRoute;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class ViewNavigator {
     private static ViewNavigator instance;
     private Stage stage;
     private Scene scene;
-    private Parent root;
+    public static Parent root;
 
     private ViewNavigator(Stage primaryStage) {
         stage = primaryStage;
@@ -42,6 +44,7 @@ public class ViewNavigator {
             case LOGIN -> viewPath = "login-page";
             case ORDER -> viewPath = "order-page";
             case LOGGER -> viewPath = "logs-centre-page";
+            case ADMIN -> viewPath = "admin-page";
             default -> viewPath = "route-not-found";
         }
 

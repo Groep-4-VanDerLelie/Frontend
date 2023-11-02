@@ -11,7 +11,7 @@
       <VBox>
          <VBox>
             <VBox fx:id="userContextMenu">
-               <HBox styleClass="context-menu-bar, first">
+               <HBox onMouseClicked="#navigateToAdminPage" styleClass="context-menu-bar, first">
                   <Button>
                      <graphic>
                         <ImageView>
@@ -69,7 +69,7 @@
                   <Label fx:id="usernameLabel" text="John Doe" BorderPane.alignment="CENTER" />
                </center>
                <right>
-                  <Button fx:id="userMenuToggle" id="user-menu-toggle" mnemonicParsing="false" onAction="#toggleUserMenu" text="▴" BorderPane.alignment="CENTER" />
+                  <Button fx:id="userMenuToggle" id="user-menu-toggle" mnemonicParsing="false" onAction="#toggleUserMenu" text="▾" BorderPane.alignment="CENTER" />
                </right>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

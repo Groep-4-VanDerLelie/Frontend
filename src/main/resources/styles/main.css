@@ -98,6 +98,8 @@
     -fx-background-color: -dark-blue;
     -fx-background-radius: 0.5em;
     -fx-padding: 0.25em;
+    -fx-min-width: 400;
+    -fx-max-width: 400;
 }
 
 .log-entry > .label {
@@ -140,8 +142,23 @@
 }
 
 /* Log Details Styling */
+.panel-close-button {
+    -fx-background-color: -red;
+    -fx-text-fill: -white;
+    -fx-font-weight: bold;
+}
+
+.panel-edit-button {
+    -fx-background-color: -cyan;
+    -fx-text-fill: -dark-blue;
+}
+
 .log-details-container {
     -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.log-details-container .text-field {
+    -fx-background-color: -even-darker-blue;
 }
 
 .log-details-content {
@@ -172,4 +189,69 @@
 .log-restore-button {
     -fx-background-color: -white;
     -fx-text-fill: grey;
+}
+
+.combo-box .list-cell
+{
+    -fx-background: -dark-blue;
+    -fx-background-color: transparent;
+    -fx-text-fill: -white;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: -cyan, -cyan;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 4 0 4 5;
+
+    /* No alternate highlighting */
+    -fx-background-color: -dark-blue;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-background: -fx-accent;
+    -fx-background-color: -fx-selection-bar;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover
+{
+    -fx-background-color: -dark-blue;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+.combo-box-base
+{
+    -fx-background-color: -dark-blue;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: -fx-hover-base;
+}
+
+.combo-box-base:showing
+{
+    -fx-color: -fx-pressed-base;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: -fx-focus-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
 }

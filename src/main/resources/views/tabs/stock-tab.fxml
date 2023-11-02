@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.collections.FXCollections?>
+<Tab xmlns="http://javafx.com/javafx"
+     xmlns:fx="http://javafx.com/fxml"
+     fx:controller="com.vanderlelie.frontend.views.StockView">
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <children>
+            <Label alignment="CENTER" text="Current Stock">
+                <font>
+                    <Font size="35.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="10.0" />
+                </VBox.margin>
+            </Label>
+            <HBox maxHeight="-Infinity" prefHeight="45.0" alignment="CENTER" spacing="10">
+                <StackPane maxWidth="-Infinity"  prefWidth="400.0">
+                    <TextField fx:id="searchInput" onAction="#searchStocksByQuery" promptText="Search in stock" />
+                    <Button id="search-logs-button" onAction="#searchStocksByQuery" StackPane.alignment="CENTER_RIGHT">
+                        <graphic>
+                            <ImageView>
+                                <fitWidth>25</fitWidth>
+                                <fitHeight>25</fitHeight>
+                                <Image url="@../../images/search-icon.png" />
+                            </ImageView>
+                        </graphic>
+                    </Button>
+                </StackPane>
+                <ComboBox maxHeight="-Infinity" prefHeight="45.0">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="🇳🇱 Netherlands"/>
+                            <String fx:value="🇷🇴 Romania"/>
+                        </FXCollections>
+                    </items>
+                    <value>
+                        <String fx:value="🇳🇱 Netherlands"/>
+                    </value>
+                </ComboBox>
+            </HBox>
+            <Label fx:id="resultsCountLabel" text="Results (Showing 10 of 100)">
+                <VBox.margin>
+                    <Insets top="15.0" />
+                </VBox.margin></Label>
+            <Pagination fx:id="resultsPagination" prefHeight="200.0" prefWidth="200.0" />
+        </children>
+    </VBox>
+</Tab>
