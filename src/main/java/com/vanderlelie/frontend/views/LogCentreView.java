@@ -34,9 +34,11 @@ public class LogCentreView implements LogResultObserver {
     public void initialize() {
         this.logsController = LogsController.getInstance();
         this.logsController.registerLogObserver(this);
+
+        this.searchLogsByQuery();
     }
 
-    public void searchLogsByQuery(Event _event) {
+    public void searchLogsByQuery() {
         String query = searchInput.getText();
 
         try {
