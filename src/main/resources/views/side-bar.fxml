@@ -12,7 +12,7 @@
          <VBox>
             <VBox fx:id="userContextMenu">
                <HBox onMouseClicked="#navigateToAdminPage" styleClass="context-menu-bar, first">
-                  <Button>
+                  <Button onAction="#navigateToAdminPage">
                      <graphic>
                         <ImageView>
                            <fitWidth>25</fitWidth>
@@ -21,10 +21,10 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button>Admin Page</Button>
+                  <Button onAction="#navigateToAdminPage">Admin Page</Button>
                </HBox>
                <HBox onMouseClicked="#navigateToLogsCentre" styleClass="context-menu-bar">
-                  <Button>
+                  <Button onAction="#navigateToLogsCentre">
                      <graphic>
                         <ImageView>
                            <fitWidth>25</fitWidth>
@@ -33,7 +33,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button>View Logs</Button>
+                  <Button onAction="#navigateToLogsCentre">View Logs</Button>
                </HBox>
                <HBox styleClass="context-menu-bar">
                   <Button>
@@ -61,7 +61,7 @@
                </HBox>
             </VBox>
    
-            <BorderPane prefHeight="38.0" prefWidth="132.0" styleClass="user-bar">
+            <BorderPane onMouseClicked="#toggleUserMenu" prefHeight="38.0" prefWidth="132.0" styleClass="user-bar">
                <left>
                   <Circle styleClass="user-icon" radius="20.0" BorderPane.alignment="CENTER" />
                </left>
