@@ -4,6 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import com.vanderlelie.frontend.models.Packaging?>
 <BorderPane prefHeight="468.0" prefWidth="868.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.OrderView">
     <left>
         <fx:include source="side-bar.fxml" />
@@ -20,7 +23,7 @@
                               </font>
                           </Label>
                           <Label text="%ORDER_PROCESSING_LABEL" />
-                          <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" />
+                          <TextField fx:id="order_id" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" />
                           <Label text="%ORDER_PROCESSING_HINT" />
                           <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processOrderNumber" prefHeight="45.0" prefWidth="400.0" text="%START_PROCESSING_BUTTON" />
                       </children>
@@ -36,9 +39,19 @@
                               </font>
                           </Label>
                           <Label text="Select the type of packaging that suits this order!" />
-                          <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                          <ComboBox fx:id="packagingComboBox" maxHeight="-Infinity" prefHeight="45.0" onShown="#onComboBoxShown" >
+                              <items>
+                                  <FXCollections fx:factory="observableArrayList">
+                                      <Packaging  />
+                                      <Packaging />
+                                  </FXCollections>
+                              </items>
+                              <value>
+                                  <Packaging fx:id="starting_value" />
+                              </value>
+                          </ComboBox>
                           <Label text="! hint lorem upsum" />
-                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="250.0" text="Finish Packaging" />
+                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPakcaging"  prefHeight="30.0" prefWidth="250.0" text="Finish Packaging" />
                       </children>
                   </VBox>
               </Tab>
