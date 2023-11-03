@@ -16,7 +16,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +29,7 @@ public class LogCentreView implements LogResultObserver {
     private final int ENTRIES_PER_PAGE = 16;
     private final double LOG_ENTRY_MARGIN = 7.5;
     private final int INFO_BOX_TOP_MARGIN = 15;
+    private final double SPACING_MARGIN = 5;
     private HashMap<Integer, List<Log>> logsMap = new HashMap<>();
     @FXML
     private StackPane rootPane;
@@ -58,9 +64,20 @@ public class LogCentreView implements LogResultObserver {
         logBox.getStyleClass().add("log-entry");
         logBox.setAlignment(Pos.CENTER_LEFT);
 
-        Label logLabel = new Label();
-        logLabel.setText(log.toString());
-        logLabel.setAlignment(Pos.CENTER_LEFT);
+        Pane spacer = new Pane();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        String userName = log.getOrderObject().getUserObject().getFirstName() + " " + log.getOrderObject().getUserObject().getLastName();
+        Label logLeftLabel = new Label();
+        logLeftLabel.setText(userName);
+        HBox.setMargin(logLeftLabel, new Insets(0, 0, 0, SPACING_MARGIN));
+
+        Date targetDate = log.getOrderObject().getDate();
+        LocalDate targetLocalDate = targetDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+        long daysAgo = ChronoUnit.DAYS.between(targetLocalDate, LocalDate.now());
+        Label packagingRightLabel = new Label();
+        packagingRightLabel.setText(daysAgo + " days ago");
+        packagingRightLabel.setAlignment(Pos.CENTER_RIGHT);
 
         Button logInfoButton = new Button();
         logInfoButton.setAlignment(Pos.CENTER_RIGHT);
@@ -70,7 +87,7 @@ public class LogCentreView implements LogResultObserver {
         });
         HBox.setMargin(logInfoButton, new Insets(0, 0, 0, LOG_ENTRY_MARGIN));
 
-        logBox.getChildren().addAll(logLabel, logInfoButton);
+        logBox.getChildren().addAll(logLeftLabel, spacer, packagingRightLabel, logInfoButton);
 
         HBox marginWrapper = new HBox(logBox);
         HBox.setMargin(logBox, new Insets(LOG_ENTRY_MARGIN));
@@ -79,6 +96,9 @@ public class LogCentreView implements LogResultObserver {
     }
 
     private HBox createAllLogsHBox(int pageIndex) {
+        resultsCountLabel.setText(String.format("Results (Showing %s of %s)",
+                (ENTRIES_PER_PAGE * pageIndex) + 1 + " - " + ENTRIES_PER_PAGE * (pageIndex + 1), logsMap.size() * ENTRIES_PER_PAGE));
+
         HBox mainHolder = new HBox();
         mainHolder.setAlignment(Pos.CENTER);
 
@@ -132,6 +152,19 @@ public class LogCentreView implements LogResultObserver {
         VBox.setMargin(logInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
         logInfo.getChildren().addAll(logTitle, logTitleUnderLine, logDateLabel);
 
+        Button closePanelButton = new Button("X");
+        closePanelButton.setMaxSize(20, 20);
+        closePanelButton.getStyleClass().add("panel-close-button");
+        closePanelButton.setOnAction(e -> {
+            this.hideLogDetailsPage();
+        });
+        closePanelButton.setAlignment(Pos.CENTER_RIGHT);
+
+        HBox topLine = new HBox();
+        HBox.setHgrow(logInfo, Priority.ALWAYS);
+        topLine.getChildren().addAll(logInfo, closePanelButton);
+
+
         HBox packagingAndArchiveInfo = new HBox();
         VBox packagingInfo = new VBox();
         Label packagingInfoTitle = new Label("Packaging Info");
@@ -146,7 +179,7 @@ public class LogCentreView implements LogResultObserver {
                 log.getUserObject().getFirstName() + " " + log.getUserObject().getLastName();
         String archivedDate = log.getUserObject() == null ?
                 "Never":
-                log.getOrderObject().getDate();
+                log.getOrderObject().getDate().toString();
 
 
         VBox archiveInfo = new VBox();
@@ -183,7 +216,7 @@ public class LogCentreView implements LogResultObserver {
         HBox.setHgrow(bottomBar, Priority.ALWAYS);
         VBox.setVgrow(bottomBar, Priority.ALWAYS);
 
-        detailsContainer.getChildren().addAll(logInfo, packagingAndArchiveInfo, productInfo, bottomBar);
+        detailsContainer.getChildren().addAll(topLine, packagingAndArchiveInfo, productInfo, bottomBar);
         mainContainer.setCenter(detailsContainer);
         return mainContainer;
     }
@@ -191,7 +224,6 @@ public class LogCentreView implements LogResultObserver {
     @Override
     public boolean update(ArrayList<Log> logs) {
         Toast.show(String.format("Found %s results!", logs.size()), searchInput, true);
-        resultsCountLabel.setText(String.format("Results (Showing %s of %s)", 10, logs.size()));
 
         logsMap.clear();
         for (int i = 0; i < logs.size(); i += ENTRIES_PER_PAGE) {

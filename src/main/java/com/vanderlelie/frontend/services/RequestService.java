@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.vanderlelie.frontend.enums.RequestMethod;
 import com.vanderlelie.frontend.models.Log;
 import com.vanderlelie.frontend.models.Order;
+import com.vanderlelie.frontend.models.Packaging;
 import com.vanderlelie.frontend.models.User;
 
 import java.lang.reflect.Type;
@@ -75,6 +76,10 @@ public class RequestService {
 
     public Log[] getLogs() throws Exception {
         return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
+    }
+
+    public Packaging[] getAllPackaging() throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/packagings", Packaging[].class);
     }
 
     private <R> R makeRequest(RequestMethod method, String path, Class<R> returnType, String payload) throws Exception {
