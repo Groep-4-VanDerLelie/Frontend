@@ -1,11 +1,8 @@
 package com.vanderlelie.frontend.models;
 
-import com.vanderlelie.frontend.observers.AuthObserver;
 import com.vanderlelie.frontend.observers.OrderObserver;
 import com.vanderlelie.frontend.shared.OrderObservable;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +12,12 @@ public class Order implements OrderObservable {
     private UUID id;
     private UUID user;
     private UUID archiver;
+    private UUID product;
+    private UUID customer;
     private Date date;
+
+    public Order() {
+    }
 
     public UUID getId() {
         return id;
@@ -47,6 +49,22 @@ public class Order implements OrderObservable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public UUID getProduct() {
+        return product;
+    }
+
+    public void setProduct(UUID product) {
+        this.product = product;
+    }
+
+    public UUID getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(UUID customer) {
+        this.customer = customer;
     }
 
     private List<OrderObserver> observers = new ArrayList<>();

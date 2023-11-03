@@ -14,6 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.Gson;
@@ -69,8 +70,28 @@ public class RequestService {
         return this.makeRequest(RequestMethod.GET, "/users", User.class);
     }
 
-    public Order getOrder() throws Exception {
-        return this.makeRequest(RequestMethod.GET, "/orders", Order.class);
+    public Order[] getOrder() throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/orders", Order[].class);
+    }
+    public Order getOrderWithId(UUID id) throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/orders/{id}", Order.class, id.toString());
+    }
+
+    public Product getProduct(String id) throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/products/" + id , Product.class);
+    }
+
+    public Packaging[] getPackaging(String id) throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/products/" + id + "/packaging", Packaging[].class);
+    }
+
+    public Packaging getPackage(String id) throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/packagings/" + id, Packaging.class);
+    }
+
+    public void procesOrder(Packaging packaging, String order) throws Exception {
+        this.makeRequest(RequestMethod.POST, "/orders/procesorder/" + order, String.class);
+
     }
 
     public AllLogsResponse[] getLogs() throws Exception {

@@ -70,4 +70,5 @@ public class Product {
     public void setPackaging(UUID packaging) {
         this.packaging = packaging;
     }
+
 }
