@@ -12,10 +12,10 @@
            stylesheets="@../styles/main.css">
     <BorderPane>
         <left>
-            <fx:include source="side-bar.fxml"/>
+            <fx:include source="admin-side-bar.fxml"/>
         </left>
         <center>
-            <TabPane fx:id="adminTab">
+            <TabPane id="adminTab" fx:id="adminTab">
                 <fx:include source="tabs/stock-tab.fxml"/>
                 <fx:include source="tabs/client-tab.fxml"/>
             </TabPane>

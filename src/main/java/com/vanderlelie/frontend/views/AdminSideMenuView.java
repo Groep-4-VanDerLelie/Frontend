@@ -6,10 +6,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class AdminSideMenuView implements AuthObserver {
+public class AdminSideMenuView {
 
     @FXML
     private VBox adminContextMenu;
@@ -27,6 +28,8 @@ public class AdminSideMenuView implements AuthObserver {
     @FXML
     private TabPane adminTab;
 
+    private final int STOCK_TAB = 0;
+    private final int CLIENT_TAB = 1;
 
     public void initialize(){
     }
@@ -34,16 +37,22 @@ public class AdminSideMenuView implements AuthObserver {
     @FXML
     public void onClick(){
         clientDetails.setUnderline(true);
-
-        ViewNavigator.getInstance().navigateTo(ViewRoute.ADMIN);
-
-        SingleSelectionModel<Tab> selectionModel = adminTab.getSelectionModel();
-
-        selectionModel.select(1);
     }
 
-    @Override
-    public boolean update(boolean authorized) {
-        return false;
+    public void switchToStockTab() {
+        selectTabByIndex(STOCK_TAB);
+    }
+
+    public void switchToClientTab() {
+        selectTabByIndex(CLIENT_TAB);
+    }
+
+    private void selectTabByIndex(int index) {
+        if (adminTab == null) {
+            adminTab = (TabPane) ViewNavigator.root.lookup("#adminTab");
+        }
+
+        SingleSelectionModel<Tab> selectionModel = adminTab.getSelectionModel();
+        selectionModel.select(index);
     }
 }
