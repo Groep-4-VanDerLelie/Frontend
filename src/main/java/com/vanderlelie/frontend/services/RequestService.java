@@ -3,10 +3,7 @@ package com.vanderlelie.frontend.services;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.vanderlelie.frontend.enums.RequestMethod;
-import com.vanderlelie.frontend.models.Log;
-import com.vanderlelie.frontend.models.Order;
-import com.vanderlelie.frontend.models.Packaging;
-import com.vanderlelie.frontend.models.User;
+import com.vanderlelie.frontend.models.*;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -77,6 +74,11 @@ public class RequestService {
     public Log[] getLogs() throws Exception {
         return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
     }
+
+    public Customer[] getCustomers() throws Exception {
+        return  this.makeRequest(RequestMethod.GET, "/customers",Customer[].class);
+    }
+
 
     public Packaging[] getAllPackaging() throws Exception {
         return this.makeRequest(RequestMethod.GET, "/packagings", Packaging[].class);

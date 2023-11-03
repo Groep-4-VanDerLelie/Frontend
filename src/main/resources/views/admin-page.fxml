@@ -15,8 +15,9 @@
             <fx:include source="side-bar.fxml"/>
         </left>
         <center>
-            <TabPane>
+            <TabPane fx:id="adminTab">
                 <fx:include source="tabs/stock-tab.fxml"/>
+                <fx:include source="tabs/client-tab.fxml"/>
             </TabPane>
         </center>
     </BorderPane>
