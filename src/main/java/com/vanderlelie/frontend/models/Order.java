@@ -16,7 +16,7 @@ public class Order implements OrderObservable {
     private User userObject;
     private UUID user;
     private UUID archiver;
-    private String date;
+    private Date date;
 
     public UUID getId() {
         return id;
@@ -50,11 +50,11 @@ public class Order implements OrderObservable {
         this.archiver = archiver;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
