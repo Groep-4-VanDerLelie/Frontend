@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogResponse implements LogObservable {
-    private ArrayList<Log> logs = new ArrayList<>();
+    private ArrayList<AllLogsResponse> logs = new ArrayList<>();
     private List<LogResultObserver> observers = new ArrayList<>();
     @Override
     public void registerObserver(LogResultObserver logObserver) {
@@ -21,7 +21,7 @@ public class LogResponse implements LogObservable {
     }
 
     @Override
-    public void notifyObservers(ArrayList<Log> logs) {
+    public void notifyObservers(ArrayList<AllLogsResponse> logs) {
         ArrayList<Integer> observersToRemove = new ArrayList<>();
 
         for (int i = 0; i < observers.size(); i++) {
@@ -37,11 +37,11 @@ public class LogResponse implements LogObservable {
         }
     }
 
-    public ArrayList<Log> getLogs() {
+    public ArrayList<AllLogsResponse> getLogs() {
         return logs;
     }
 
-    public void setLogs(ArrayList<Log> logs) {
+    public void setLogs(ArrayList<AllLogsResponse> logs) {
         this.logs = logs;
 
         this.notifyObservers(this.logs);

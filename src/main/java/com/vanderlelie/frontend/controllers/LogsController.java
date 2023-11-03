@@ -1,6 +1,7 @@
 package com.vanderlelie.frontend.controllers;
 
 import com.vanderlelie.frontend.models.Log;
+import com.vanderlelie.frontend.models.responses.AllLogsResponse;
 import com.vanderlelie.frontend.models.responses.LogResponse;
 import com.vanderlelie.frontend.observers.LogResultObserver;
 import com.vanderlelie.frontend.services.RequestService;
@@ -22,7 +23,7 @@ public class LogsController {
     }
 
     public void searchLogsByQuery(String query) throws Exception {
-        Log[] logs = requestService.getLogs();
+        AllLogsResponse[] logs = requestService.getLogs();
 
         this.logResponse.setLogs(new ArrayList<>(Arrays.asList(logs)));
     }

@@ -2,6 +2,8 @@ package com.vanderlelie.frontend.views;
 
 import com.vanderlelie.frontend.controllers.LogsController;
 import com.vanderlelie.frontend.models.Log;
+import com.vanderlelie.frontend.models.responses.AllLogsResponse;
+import com.vanderlelie.frontend.models.responses.LogResponse;
 import com.vanderlelie.frontend.observers.LogResultObserver;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -30,7 +32,7 @@ public class LogCentreView implements LogResultObserver {
     private final double LOG_ENTRY_MARGIN = 7.5;
     private final int INFO_BOX_TOP_MARGIN = 15;
     private final double SPACING_MARGIN = 5;
-    private HashMap<Integer, List<Log>> logsMap = new HashMap<>();
+    private HashMap<Integer, List<AllLogsResponse>> logsMap = new HashMap<>();
     @FXML
     private StackPane rootPane;
     @FXML
@@ -59,7 +61,7 @@ public class LogCentreView implements LogResultObserver {
         }
     }
 
-    private HBox createLogHBox(Log log) {
+    private HBox createLogHBox(AllLogsResponse log) {
         HBox logBox = new HBox();
         logBox.getStyleClass().add("log-entry");
         logBox.setAlignment(Pos.CENTER_LEFT);
@@ -67,12 +69,12 @@ public class LogCentreView implements LogResultObserver {
         Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        String userName = log.getOrderObject().getUserObject().getFirstName() + " " + log.getOrderObject().getUserObject().getLastName();
+        String userName = log.getUser().getFirstName() + " " + log.getUser().getLastName();
         Label logLeftLabel = new Label();
         logLeftLabel.setText(userName);
         HBox.setMargin(logLeftLabel, new Insets(0, 0, 0, SPACING_MARGIN));
 
-        Date targetDate = log.getOrderObject().getDate();
+        Date targetDate = log.getOrder().getDate();
         LocalDate targetLocalDate = targetDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         long daysAgo = ChronoUnit.DAYS.between(targetLocalDate, LocalDate.now());
         Label packagingRightLabel = new Label();
@@ -102,16 +104,16 @@ public class LogCentreView implements LogResultObserver {
         HBox mainHolder = new HBox();
         mainHolder.setAlignment(Pos.CENTER);
 
-        List<Log> currentPageLogs = logsMap.get(pageIndex);
+        List<AllLogsResponse> currentPageLogs = logsMap.get(pageIndex);
         VBox leftSide = new VBox();
         int endLeftPosition = Math.min(ENTRIES_PER_PAGE / 2, currentPageLogs.size());
-        for (Log log: currentPageLogs.subList(0, endLeftPosition)) {
+        for (AllLogsResponse log: currentPageLogs.subList(0, endLeftPosition)) {
             leftSide.getChildren().add(createLogHBox(log));
         }
 
         VBox rightSide = new VBox();
         int endRightPosition = Math.min(ENTRIES_PER_PAGE, currentPageLogs.size());
-        for (Log log: currentPageLogs.subList(endLeftPosition, endRightPosition)) {
+        for (AllLogsResponse log: currentPageLogs.subList(endLeftPosition, endRightPosition)) {
             rightSide.getChildren().add(createLogHBox(log));
         }
 
@@ -119,7 +121,7 @@ public class LogCentreView implements LogResultObserver {
         return mainHolder;
     }
 
-    public void showLogDetailsPage(Log log) {
+    public void showLogDetailsPage(AllLogsResponse log) {
         rootPane.getChildren().add(createLogDetailsPage(log));
     }
 
@@ -127,7 +129,7 @@ public class LogCentreView implements LogResultObserver {
         rootPane.getChildren().remove(1);
     }
 
-    private BorderPane createLogDetailsPage(Log log) {
+    private BorderPane createLogDetailsPage(AllLogsResponse log) {
         BorderPane mainContainer = new BorderPane();
         mainContainer.getStyleClass().add("log-details-container");
         mainContainer.setOnMouseClicked(e -> {
@@ -143,11 +145,11 @@ public class LogCentreView implements LogResultObserver {
         detailsContainer.getStyleClass().add("log-details-content");
 
         VBox logInfo = new VBox();
-        Label logTitle = new Label(String.format("Hema (%s)", log.getOrderObject().getId()));
+        Label logTitle = new Label(log.getPackaging().getName());
         logTitle.getStyleClass().add("title");
         Rectangle logTitleUnderLine = new Rectangle(200, 5);
         logTitleUnderLine.setFill(Color.rgb(75, 200, 182));
-        Label logDateLabel = new Label(String.format("Processed on %s", log.getOrderObject().getDate()));
+        Label logDateLabel = new Label(String.format("Processed on %s", log.getOrder().getDate()));
         logDateLabel.getStyleClass().add("log-date-label");
         VBox.setMargin(logInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
         logInfo.getChildren().addAll(logTitle, logTitleUnderLine, logDateLabel);
@@ -174,12 +176,12 @@ public class LogCentreView implements LogResultObserver {
         HBox.setMargin(packagingInfo, new Insets(0, INFO_BOX_TOP_MARGIN * 8, 0, 0));
         packagingInfo.getChildren().addAll(packagingInfoTitle, packagingInfoSubUsed, packagingInfoSubDefault);
 
-        String archiverName = log.getUserObject() == null ?
+        String archiverName = log.getOrder().getArchiver() == null ?
                 "None" :
-                log.getUserObject().getFirstName() + " " + log.getUserObject().getLastName();
-        String archivedDate = log.getUserObject() == null ?
+                log.getUser().getFirstName() + " " + log.getUser().getLastName();
+        String archivedDate = log.getOrder().getArchiver() == null ?
                 "Never":
-                log.getOrderObject().getDate().toString();
+                log.getOrder().getDate().toString();
 
 
         VBox archiveInfo = new VBox();
@@ -222,13 +224,13 @@ public class LogCentreView implements LogResultObserver {
     }
 
     @Override
-    public boolean update(ArrayList<Log> logs) {
+    public boolean update(ArrayList<AllLogsResponse> logs) {
         Toast.show(String.format("Found %s results!", logs.size()), searchInput, true);
 
         logsMap.clear();
         for (int i = 0; i < logs.size(); i += ENTRIES_PER_PAGE) {
             int endPosition = Math.min(i + ENTRIES_PER_PAGE, logs.size());
-            List<Log> chunk = logs.subList(i, endPosition);
+            List<AllLogsResponse> chunk = logs.subList(i, endPosition);
             logsMap.put(i / ENTRIES_PER_PAGE, chunk);
         }
 

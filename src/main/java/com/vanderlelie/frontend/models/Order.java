@@ -13,7 +13,6 @@ import java.util.UUID;
 
 public class Order implements OrderObservable {
     private UUID id;
-    private User userObject;
     private UUID user;
     private UUID archiver;
     private Date date;
@@ -24,14 +23,6 @@ public class Order implements OrderObservable {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    public User getUserObject() {
-        return userObject;
-    }
-
-    public void setUserObject(User userObject) {
-        this.userObject = userObject;
     }
 
     public UUID getUser() {

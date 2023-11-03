@@ -11,10 +11,8 @@ public class Log {
     private UUID id;
     private UUID order;
     private UUID archiver;
-    private Order orderObject;
     private UUID customer;
     private UUID user;
-    private User userObject;
 
     public Log(){
 
@@ -44,14 +42,6 @@ public class Log {
         this.archiver = archiver;
     }
 
-    public Order getOrderObject() {
-        return orderObject;
-    }
-
-    public void setOrderObject(Order orderObject) {
-        this.orderObject = orderObject;
-    }
-
     public UUID getCustomer() {
         return customer;
     }
@@ -66,22 +56,5 @@ public class Log {
 
     public void setUser(UUID user) {
         this.user = user;
-    }
-
-    public User getUserObject() {
-        return userObject;
-    }
-
-    public void setUserObject(User userObject) {
-        this.userObject = userObject;
-    }
-
-    @Override
-    public String toString() {
-        String logUsername = "Luke";
-        String logProductName = "Hema Large Packaging";
-        String logDate = "(12:31pm 11 sept 2023)";
-
-        return logUsername + " - " + logProductName + " " + logDate;
     }
 }

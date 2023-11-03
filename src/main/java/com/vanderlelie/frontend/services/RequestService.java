@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
 import com.google.gson.Gson;
+import com.vanderlelie.frontend.models.responses.AllLogsResponse;
 import com.vanderlelie.frontend.models.responses.GenericResponse;
+import com.vanderlelie.frontend.models.responses.LogResponse;
 import com.vanderlelie.frontend.models.responses.TokenResponse;
 
 public class RequestService {
@@ -71,8 +73,8 @@ public class RequestService {
         return this.makeRequest(RequestMethod.GET, "/orders", Order.class);
     }
 
-    public Log[] getLogs() throws Exception {
-        return this.makeRequest(RequestMethod.GET, "/logs", Log[].class);
+    public AllLogsResponse[] getLogs() throws Exception {
+        return this.makeRequest(RequestMethod.GET, "/logs", AllLogsResponse[].class);
     }
 
     public Customer[] getCustomers() throws Exception {
