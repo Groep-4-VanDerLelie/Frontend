@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.control.Label?>
+<BorderPane prefHeight="450.0" prefWidth="179.0" styleClass="side-bar" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.AdminSideMenuView">
+    <top>
+        <VBox>
+            <VBox>
+                <VBox fx:id="adminContextMenu">
+                    <HBox styleClass="context-admin-menu, first">
+                        <Text fx:id="clientDetails" fill="white" onMouseClicked="#onClick" text="Client Details"/>
+                    </HBox>
+                    <HBox styleClass="context-admin-menu">
+                        <Text fx:id="defaultPackaging" fill="white" onMouseClicked="#onClick" text="Default packaging" />
+                    </HBox>
+                    <HBox styleClass="context-admin-menu">
+                        <Text fx:id="employees" fill="white" onMouseClicked="#onClick" text="Employees" />
+                    </HBox>
+                    <HBox styleClass="context-admin-menu, last">
+                        <Text fx:id="archive" fill="white" onMouseClicked="#onClick" text="Archive" />
+                    </HBox>
+                    <HBox styleClass="context-admin-menu, last">
+                        <Text fx:id="stock" fill="white" onMouseClicked="#onClick" text="Stock" />
+                    </HBox>
+                </VBox>
+            </VBox>
+            <BorderPane.margin>
+                <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+            </BorderPane.margin>
+        </VBox>
+    </top>
+</BorderPane>
