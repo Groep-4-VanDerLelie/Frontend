@@ -47,8 +47,8 @@
                   </Button>
                   <Button>Select Language</Button>
                </HBox>
-               <HBox styleClass="context-menu-bar, last">
-                  <Button>
+               <HBox onMouseClicked="#navigateToLoginPage" styleClass="context-menu-bar, last">
+                  <Button onAction="#navigateToLoginPage">
                      <graphic>
                         <ImageView>
                            <fitWidth>25</fitWidth>
@@ -57,7 +57,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button styleClass="danger-text">Logout</Button>
+                  <Button onAction="#navigateToLoginPage" styleClass="danger-text">Logout</Button>
                </HBox>
             </VBox>
    
