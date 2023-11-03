@@ -122,6 +122,7 @@ public class LogCentreView implements LogResultObserver {
         detailsContainer.setMaxSize(600, 450);
         detailsContainer.getStyleClass().add("log-details-content");
 
+
         VBox logInfo = new VBox();
         Label logTitle = new Label(String.format("Hema (%s)", log.getOrderObject().getId()));
         logTitle.getStyleClass().add("title");
@@ -131,6 +132,19 @@ public class LogCentreView implements LogResultObserver {
         logDateLabel.getStyleClass().add("log-date-label");
         VBox.setMargin(logInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
         logInfo.getChildren().addAll(logTitle, logTitleUnderLine, logDateLabel);
+
+        Button closePanelButton = new Button("X");
+        closePanelButton.setMaxSize(20, 20);
+        closePanelButton.getStyleClass().add("panel-close-button");
+        closePanelButton.setOnAction(e -> {
+            this.hideLogDetailsPage();
+        });
+        closePanelButton.setAlignment(Pos.CENTER_RIGHT);
+
+        HBox topLine = new HBox();
+        HBox.setHgrow(logInfo, Priority.ALWAYS);
+        topLine.getChildren().addAll(logInfo, closePanelButton);
+
 
         HBox packagingAndArchiveInfo = new HBox();
         VBox packagingInfo = new VBox();
@@ -183,7 +197,7 @@ public class LogCentreView implements LogResultObserver {
         HBox.setHgrow(bottomBar, Priority.ALWAYS);
         VBox.setVgrow(bottomBar, Priority.ALWAYS);
 
-        detailsContainer.getChildren().addAll(logInfo, packagingAndArchiveInfo, productInfo, bottomBar);
+        detailsContainer.getChildren().addAll(topLine, packagingAndArchiveInfo, productInfo, bottomBar);
         mainContainer.setCenter(detailsContainer);
         return mainContainer;
     }
