@@ -1,17 +1,18 @@
 package com.vanderlelie.frontend.controllers;
 
 import com.vanderlelie.frontend.models.Customer;
+import com.vanderlelie.frontend.models.responses.ClientResponse;
+import com.vanderlelie.frontend.observers.ClientObserver;
 import com.vanderlelie.frontend.services.RequestService;
 
-public class CustomerController {
-    private Customer customer;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    private RequestService requestService;
+public class CustomerController {
+    private ClientResponse clientResponse = new ClientResponse();
+    private RequestService requestService = RequestService.getInstance();
     static CustomerController customerController;
 
-    public CustomerController() {
-        requestService = RequestService.getInstance();
-    }
 
     public static CustomerController getInstance(){
         if (customerController == null){
@@ -20,8 +21,19 @@ public class CustomerController {
         return customerController;
     }
 
+    public void searchCustomersByQuery(String query) throws Exception {
+        Customer[] logs = requestService.getCustomers();
 
-    public Customer[] getCustomers() throws Exception {
-        return requestService.getCustomers();
+        this.clientResponse.setLogs(new ArrayList<>(Arrays.asList(logs)));
+    }
+
+    public void updateCustomerByQuery(String collumName, String value) throws Exception {
+        Customer customer= requestService.updateCustomer(collumName, value);
+        System.out.println(customer.toString());
+        //this.clientResponse.notifyObservers(customer);
+    }
+
+    public void registerClientObserver(ClientObserver clientView) {
+        this.clientResponse.registerObserver(clientView);
     }
 }

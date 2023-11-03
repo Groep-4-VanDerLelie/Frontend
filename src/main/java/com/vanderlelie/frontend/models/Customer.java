@@ -5,7 +5,11 @@ import java.util.UUID;
 public class Customer {
     private UUID id;
     private String name;
-    private Packaging basicPackaging;
+    private String visitAddress;
+    private String deliveryAddress;
+    private String phoneNr;
+    private String postalCode;
+    private String email;
 
     public UUID getId() {
         return id;
@@ -23,12 +27,44 @@ public class Customer {
         this.name = name;
     }
 
-    public Packaging getBasicPackaging() {
-        return basicPackaging;
+    public String getVisitAddress() {
+        return visitAddress;
     }
 
-    public void setBasicPackaging(Packaging basicPackaging) {
-        this.basicPackaging = basicPackaging;
+    public void setVisitAddress(String visitAddress) {
+        this.visitAddress = visitAddress;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    public String getPhoneNr() {
+        return phoneNr;
+    }
+
+    public void setPhoneNr(String phoneNr) {
+        this.phoneNr = phoneNr;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
 

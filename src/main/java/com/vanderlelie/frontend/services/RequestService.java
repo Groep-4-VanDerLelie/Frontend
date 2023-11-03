@@ -81,6 +81,11 @@ public class RequestService {
         return  this.makeRequest(RequestMethod.GET, "/customers",Customer[].class);
     }
 
+    public Customer updateCustomer(String collumName, String value) throws Exception{
+        JsonObject payload = new JsonObject();
+        payload.addProperty(collumName, value);
+        return this.makeRequest(RequestMethod.PATCH, "/customers", Customer.class,payload.toString());
+    }
 
     public Packaging[] getAllPackaging() throws Exception {
         return this.makeRequest(RequestMethod.GET, "/packagings", Packaging[].class);
