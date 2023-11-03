@@ -96,6 +96,9 @@ public class LogCentreView implements LogResultObserver {
     }
 
     private HBox createAllLogsHBox(int pageIndex) {
+        resultsCountLabel.setText(String.format("Results (Showing %s of %s)",
+                (ENTRIES_PER_PAGE * pageIndex) + 1 + " - " + ENTRIES_PER_PAGE * (pageIndex + 1), logsMap.size() * ENTRIES_PER_PAGE));
+
         HBox mainHolder = new HBox();
         mainHolder.setAlignment(Pos.CENTER);
 
@@ -221,7 +224,6 @@ public class LogCentreView implements LogResultObserver {
     @Override
     public boolean update(ArrayList<Log> logs) {
         Toast.show(String.format("Found %s results!", logs.size()), searchInput, true);
-        resultsCountLabel.setText(String.format("Results (Showing %s of %s)", 10, logs.size()));
 
         logsMap.clear();
         for (int i = 0; i < logs.size(); i += ENTRIES_PER_PAGE) {

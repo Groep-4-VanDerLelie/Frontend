@@ -87,6 +87,9 @@ public class StockView implements StockResultObserver {
     }
 
     private HBox createAllPackagingHBox(int pageIndex) {
+        resultsCountLabel.setText(String.format("Results (Showing %s of %s)",
+                (ENTRIES_PER_PAGE * pageIndex) + 1 + " - " + ENTRIES_PER_PAGE * (pageIndex + 1), packagingMap.size() * ENTRIES_PER_PAGE));
+
         HBox mainHolder = new HBox();
         mainHolder.setAlignment(Pos.CENTER);
 
@@ -203,7 +206,6 @@ public class StockView implements StockResultObserver {
     @Override
     public boolean update(ArrayList<Packaging> packaging) {
         Toast.show(String.format("Found %s results!", packaging.size()), searchInput, true);
-        resultsCountLabel.setText(String.format("Results (Showing %s of %s)", 10, packaging.size()));
 
         packagingMap.clear();
         for (int i = 0; i < packaging.size(); i += ENTRIES_PER_PAGE) {
