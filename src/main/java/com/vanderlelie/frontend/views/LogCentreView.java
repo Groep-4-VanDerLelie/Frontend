@@ -69,7 +69,7 @@ public class LogCentreView implements LogResultObserver {
         Pane spacer = new Pane();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        String userName = log.getUser().getFirstName() + " " + log.getUser().getLastName();
+        String userName = log.getUser() != null ? log.getUser().getFirstName() + " " + log.getUser().getLastName() : "Luke Weerheim";
         Label logLeftLabel = new Label();
         logLeftLabel.setText(userName);
         HBox.setMargin(logLeftLabel, new Insets(0, 0, 0, SPACING_MARGIN));
