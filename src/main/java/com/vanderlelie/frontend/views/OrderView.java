@@ -61,7 +61,6 @@ public class OrderView implements OrderObserver {
     public void processPackaging() throws Exception {
         productController.getPackaging(currentOrder.getProduct().toString());
         this.processOrder();
-        swapToOrderScene();
     }
 
     private void preparePackagingOptions() throws Exception {
@@ -74,7 +73,7 @@ public class OrderView implements OrderObserver {
 
         String packagingSize = defaultPackaging.getWidth() + "x" + defaultPackaging.getHeight() + "x" + defaultPackaging.getLength();
         String productSize = tempProduct.getWidth() + "x" + tempProduct.getHeight() + "x" + tempProduct.getLength();
-        defaultPackagingHint.setText("Selected: \"" + defaultPackaging.getName() + "\" - " + packagingSize + "\n" +
+        defaultPackagingHint.setText("Default Selected: \"" + defaultPackaging.getName() + "\" - " + packagingSize + "\n" +
         "Product Selected: \"Hanger\" - " + productSize);
         packagingComboBox.setValue(defaultPackaging);
         packagingComboBox.setItems(packaging);
@@ -105,8 +104,17 @@ public class OrderView implements OrderObserver {
         return true;
     }
 
-    public void  processOrder() throws Exception {
+    public void  processOrder() {
         Packaging selectedPackaging = packagingComboBox.getValue();
-        orderController.processOrder(currentOrder, selectedPackaging);
+
+        try {
+            orderController.processOrder(currentOrder, selectedPackaging);
+
+            Toast.show("Successfully processed order!", packagingComboBox, true);
+        } catch (Exception e) {
+            Toast.show("Failed to process order!", packagingComboBox, false);
+        } finally {
+            swapToOrderScene();
+        }
     }
 }
