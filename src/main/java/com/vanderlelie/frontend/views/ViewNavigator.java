@@ -79,6 +79,7 @@ public class ViewNavigator {
             stage.setMinWidth(640);
             stage.setMinHeight(480);
             stage.setMaximized(true);
+            stage.setFullScreenExitHint("");
             stage.show();
         } catch (IOException exception) {
             exception.printStackTrace();
