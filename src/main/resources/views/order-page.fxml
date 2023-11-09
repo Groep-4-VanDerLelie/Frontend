@@ -23,7 +23,7 @@
                               </font>
                           </Label>
                           <Label text="%ORDER_PROCESSING_LABEL" />
-                          <TextField onAction="#processOrderNumber" fx:id="orderId" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" />
+                          <TextField promptText="Enter an order number" onAction="#processOrderNumber" fx:id="orderId" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="400.0" />
                           <Label text="%ORDER_PROCESSING_HINT" />
                           <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processOrderNumber" prefHeight="45.0" prefWidth="400.0" text="%START_PROCESSING_BUTTON" />
                       </children>
@@ -39,19 +39,16 @@
                               </font>
                           </Label>
                           <Label text="Select the type of packaging that suits this order!" />
-                          <ComboBox fx:id="packagingComboBox" maxHeight="-Infinity" prefHeight="45.0" onShown="#onComboBoxShown" >
+                          <ComboBox fx:id="packagingComboBox" maxHeight="-Infinity" prefHeight="45.0" prefWidth="400.0" onShown="#onComboBoxShown" >
                               <items>
                                   <FXCollections fx:factory="observableArrayList">
-                                      <Packaging  />
-                                      <Packaging />
                                   </FXCollections>
                               </items>
                               <value>
-                                  <Packaging fx:id="starting_value" />
                               </value>
                           </ComboBox>
-                          <Label text="! hint lorem upsum" />
-                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPackaging"  prefHeight="30.0" prefWidth="250.0" text="Finish Packaging" />
+                          <Label text="Default: Item - Reason" />
+                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPackaging" prefHeight="45.0" prefWidth="400.0" text="Finish Packaging" />
                       </children>
                   </VBox>
               </Tab>
