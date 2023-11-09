@@ -37,19 +37,25 @@ public class OrderView implements OrderObserver {
         selectTabByIndex(ORDER_TAB);
     }
 
-    public void processOrderNumber() throws Exception {
-        Order[] orders = orderController.getOrder();
-        for (Order order : orders) {
-            if (order.getId().equals(UUID.fromString(orderId.getText()))) {
-                System.out.println("Order found");
-                currentOrder.setId(order.getId());
-                currentOrder.setUser(order.getUser());
-                currentOrder.setProduct(order.getProduct());
-                currentOrder.setCustomer(order.getCustomer());
-                currentOrder.setDate(order.getDate());
+    public void processOrderNumber() {
+        try {
+            Order[] orders = orderController.getOrder();
+            for (Order order : orders) {
+                if (order.getId().equals(UUID.fromString(orderId.getText()))) {
+                    System.out.println("Order found");
+                    currentOrder.setId(order.getId());
+                    currentOrder.setUser(order.getUser());
+                    currentOrder.setProduct(order.getProduct());
+                    currentOrder.setCustomer(order.getCustomer());
+                    currentOrder.setDate(order.getDate());
+                }
             }
+            swapToPackingScene();
+        } catch (IllegalArgumentException e) {
+            Toast.show("\"" + orderId.getText() + "\" is not the correct format of an order ID,\ndouble check what you are scanning.", orderId, false);
+        } catch (Exception e) {
+            Toast.show("Couldn't find specified order.", orderId, false);
         }
-        swapToPackingScene();
     }
 
     public void processPackaging() throws Exception {
