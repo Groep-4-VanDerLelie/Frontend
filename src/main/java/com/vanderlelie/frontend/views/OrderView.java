@@ -18,7 +18,7 @@ public class OrderView implements OrderObserver {
     @FXML
     private TabPane orderTabs;
     @FXML
-    private TextField order_id;
+    private TextField orderId;
     @FXML
     private ComboBox packagingComboBox;
     @FXML
@@ -40,7 +40,7 @@ public class OrderView implements OrderObserver {
     public void processOrderNumber() throws Exception {
         Order[] orders = orderController.getOrder();
         for (Order order : orders) {
-            if (order.getId().equals(UUID.fromString(order_id.getText()))) {
+            if (order.getId().equals(UUID.fromString(orderId.getText()))) {
                 System.out.println("Order found");
                 currentOrder.setId(order.getId());
                 currentOrder.setUser(order.getUser());
