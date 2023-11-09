@@ -89,9 +89,8 @@ public class RequestService {
         return this.makeRequest(RequestMethod.GET, "/packagings/" + id, Packaging.class);
     }
 
-    public void procesOrder(Packaging packaging, String order) throws Exception {
+    public void processOrder(String order) throws Exception {
         this.makeRequest(RequestMethod.POST, "/orders/procesorder/" + order, String.class);
-
     }
 
     public AllLogsResponse[] getLogs() throws Exception {

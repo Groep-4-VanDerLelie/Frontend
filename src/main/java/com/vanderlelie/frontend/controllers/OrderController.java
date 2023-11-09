@@ -26,7 +26,7 @@ public class OrderController {
         return requestService.getOrder();
     }
     public void processOrder(Order order, Packaging packaging) throws Exception {
-        requestService.procesOrder(packaging, order.getId().toString());
+        requestService.processOrder(order.getId().toString());
     }
 
     public void registerOrderObserver(OrderObserver orderView) {
