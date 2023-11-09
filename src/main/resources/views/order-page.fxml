@@ -51,7 +51,7 @@
                               </value>
                           </ComboBox>
                           <Label text="! hint lorem upsum" />
-                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPakcaging"  prefHeight="30.0" prefWidth="250.0" text="Finish Packaging" />
+                          <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPackaging"  prefHeight="30.0" prefWidth="250.0" text="Finish Packaging" />
                       </children>
                   </VBox>
               </Tab>
