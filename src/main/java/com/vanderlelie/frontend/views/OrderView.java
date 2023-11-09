@@ -106,11 +106,7 @@ public class OrderView implements OrderObserver {
     }
 
     public void  processOrder() throws Exception {
-        ObservableList<Packaging> packaging = FXCollections.observableArrayList(productController.getPackaging(currentOrder.getProduct().toString()));
-        for (Packaging currentPackaging : packaging){
-            if (currentPackaging.getName().equals(packagingComboBox.getValue())){
-                orderController.processOrder(currentOrder, currentPackaging);
-            }
-        }
+        Packaging selectedPackaging = packagingComboBox.getValue();
+        orderController.processOrder(currentOrder, selectedPackaging);
     }
 }
