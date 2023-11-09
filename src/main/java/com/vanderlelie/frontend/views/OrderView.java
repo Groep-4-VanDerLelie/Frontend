@@ -20,9 +20,9 @@ public class OrderView implements OrderObserver {
     @FXML
     private TextField orderId;
     @FXML
-    private ComboBox packagingComboBox;
+    private Label defaultPackagingHint;
     @FXML
-    private Packaging starting_value;
+    private ComboBox<String> packagingComboBox;
     private OrderController orderController;
     private ProductController productController;
     private final int ORDER_TAB = 0;
