@@ -5,8 +5,6 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<?import com.vanderlelie.frontend.models.Packaging?>
 <BorderPane prefHeight="468.0" prefWidth="868.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vanderlelie.frontend.views.OrderView">
     <left>
         <fx:include source="side-bar.fxml" />
@@ -39,7 +37,7 @@
                               </font>
                           </Label>
                           <Label text="Select the type of packaging that suits this order!" />
-                          <ComboBox fx:id="packagingComboBox" maxHeight="-Infinity" prefHeight="45.0" prefWidth="400.0" onShown="#onComboBoxShown" >
+                          <ComboBox fx:id="packagingComboBox" maxHeight="-Infinity" prefHeight="45.0" prefWidth="400.0">
                               <items>
                                   <FXCollections fx:factory="observableArrayList">
                                   </FXCollections>
@@ -47,7 +45,7 @@
                               <value>
                               </value>
                           </ComboBox>
-                          <Label text="Default: Item - Reason" />
+                          <Label fx:id="defaultPackagingHint" text="Default: Item - Reason" />
                           <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#processPackaging" prefHeight="45.0" prefWidth="400.0" text="Finish Packaging" />
                       </children>
                   </VBox>

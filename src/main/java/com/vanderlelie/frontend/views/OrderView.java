@@ -22,7 +22,7 @@ public class OrderView implements OrderObserver {
     @FXML
     private Label defaultPackagingHint;
     @FXML
-    private ComboBox<String> packagingComboBox;
+    private ComboBox<Packaging> packagingComboBox;
     private OrderController orderController;
     private ProductController productController;
     private final int ORDER_TAB = 0;
@@ -64,9 +64,27 @@ public class OrderView implements OrderObserver {
         swapToOrderScene();
     }
 
+    private void preparePackagingOptions() throws Exception {
+        Packaging[] allProductPackaging = productController.getPackaging(currentOrder.getProduct().toString());
+
+        ObservableList<Packaging> packaging = FXCollections.observableArrayList(allProductPackaging);
+
+        Product tempProduct = productController.getProduct(currentOrder.getProduct().toString());
+        Packaging defaultPackaging = productController.getPackage(tempProduct.getPackaging().toString());
+        packagingComboBox.setValue(defaultPackaging);
+        packagingComboBox.setItems(packaging);
+    }
+
     private void swapToPackingScene() {
+        try {
+            preparePackagingOptions();
+        } catch (Exception e) {
+            Toast.show("Couldn't process packaging for this product, try again.", packagingComboBox, false);
+        }
+
         selectTabByIndex(PACKAGING_TAB);
     }
+
     private void swapToOrderScene() {
         selectTabByIndex(ORDER_TAB);
     }
@@ -80,19 +98,6 @@ public class OrderView implements OrderObserver {
     @Override
     public boolean update(Order order) {
         return true;
-    }
-
-    public void onComboBoxShown(Event event) throws Exception {
-        ObservableList<Packaging> packaging = FXCollections.observableArrayList(productController.getPackaging(currentOrder.getProduct().toString()));
-        ObservableList<String> packagingString = FXCollections.observableArrayList();
-        for (Packaging currentPackaging : packaging) {
-            packagingString.add(currentPackaging.getName());
-
-        }
-        Product tempProduct = productController.getProduct(currentOrder.getProduct().toString());
-        starting_value = productController.getPackage(tempProduct.getPackaging().toString());
-        packagingComboBox.setValue(starting_value.getName());
-        packagingComboBox.setItems(packagingString);
     }
 
     public void  processOrder() throws Exception {

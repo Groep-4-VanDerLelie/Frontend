@@ -96,4 +96,9 @@ public class Packaging {
     public void setCompany(String company) {
         this.company = company;
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
