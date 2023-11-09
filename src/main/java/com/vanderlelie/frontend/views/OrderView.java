@@ -71,6 +71,11 @@ public class OrderView implements OrderObserver {
 
         Product tempProduct = productController.getProduct(currentOrder.getProduct().toString());
         Packaging defaultPackaging = productController.getPackage(tempProduct.getPackaging().toString());
+
+        String packagingSize = defaultPackaging.getWidth() + "x" + defaultPackaging.getHeight() + "x" + defaultPackaging.getLength();
+        String productSize = tempProduct.getWidth() + "x" + tempProduct.getHeight() + "x" + tempProduct.getLength();
+        defaultPackagingHint.setText("Selected: \"" + defaultPackaging.getName() + "\" - " + packagingSize + "\n" +
+        "Product Selected: \"Hanger\" - " + productSize);
         packagingComboBox.setValue(defaultPackaging);
         packagingComboBox.setItems(packaging);
     }
