@@ -20,6 +20,7 @@ public class ViewNavigator {
     private Stage stage;
     private Scene scene;
     public static Parent root;
+    private Locale selectedLanguage = Locale.UK;
 
     private ViewNavigator(Stage primaryStage) {
         stage = primaryStage;
@@ -49,8 +50,7 @@ public class ViewNavigator {
         }
 
         try {
-            Locale selectedLocale = Locale.UK;
-            ResourceBundle languageBundle = ResourceBundle.getBundle("languages/" + viewPath, selectedLocale);
+            ResourceBundle languageBundle = ResourceBundle.getBundle("languages/" + viewPath, selectedLanguage);
             
             URL fxmlResource = getClass().getResource("/views/" + viewPath + ".fxml");
             if (fxmlResource == null) {
@@ -84,5 +84,17 @@ public class ViewNavigator {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public void switchLanguage() {
+        if (this.selectedLanguage.equals(Locale.UK)) {
+            selectedLanguage = Locale.of("ro_RO");
+        } else {
+            selectedLanguage = Locale.UK;
+        }
+    }
+
+    public Locale getSelectedLanguage() {
+        return selectedLanguage;
     }
 }

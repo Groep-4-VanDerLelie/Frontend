@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+import java.util.Locale;
+
 public class SideMenuView implements AuthObserver {
     @FXML
     private Label usernameLabel;
@@ -50,6 +52,13 @@ public class SideMenuView implements AuthObserver {
 
     public void navigateToLoginPage() {
         ViewNavigator.getInstance().navigateTo(ViewRoute.LOGIN);
+    }
+
+    public void switchLanguage() {
+        ViewNavigator.getInstance().switchLanguage();
+
+        String selectedLanguage = ViewNavigator.getInstance().getSelectedLanguage().equals(Locale.UK) ? "English" : "Romanian";
+        Toast.show("Switched to " + selectedLanguage, usernameLabel, true);
     }
 
     @Override

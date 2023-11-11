@@ -35,8 +35,8 @@
                   </Button>
                   <Button onAction="#navigateToLogsCentre">View Logs</Button>
                </HBox>
-               <HBox styleClass="context-menu-bar">
-                  <Button>
+               <HBox onMouseClicked="#switchLanguage" styleClass="context-menu-bar">
+                  <Button onAction="#switchLanguage">
                      <graphic>
                         <ImageView>
                            <fitWidth>25</fitWidth>
@@ -45,7 +45,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button>Select Language</Button>
+                  <Button onAction="#switchLanguage">Select Language</Button>
                </HBox>
                <HBox onMouseClicked="#navigateToLoginPage" styleClass="context-menu-bar, last">
                   <Button onAction="#navigateToLoginPage">
