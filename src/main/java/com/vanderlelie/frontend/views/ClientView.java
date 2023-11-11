@@ -36,7 +36,7 @@ public class ClientView implements ClientObserver {
     private Pagination resultsPagination;
     private HashMap<Integer, List<Customer>> customerMap = new HashMap<>();
     private CustomerController customerController;
-    private Label collumName;
+    private Label columnName;
     private TextField valueInput;
 
     public void initialize(){
@@ -50,7 +50,12 @@ public class ClientView implements ClientObserver {
         String query = searchInput.getText();
 
         try {
-            customerController.searchCustomersByQuery(query);
+            if (query.isEmpty()){
+                customerController.searchCustomersByQuery(query);
+            } else {
+                customerController.searchCustomersByCustomerNumber(Integer.parseInt(query));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.show("Couldn't fetch customers by query \"" + query + "\"", searchInput, false);
@@ -140,7 +145,7 @@ public class ClientView implements ClientObserver {
         packageTitle.getStyleClass().add("title");
         Rectangle logTitleUnderLine = new Rectangle(200, 5);
         logTitleUnderLine.setFill(Color.rgb(75, 200, 182));
-        Label logDateLabel = new Label(customer.getEmail());
+        Label logDateLabel = new Label("Customer Number: " + customer.getCustomerNumber());
         logDateLabel.getStyleClass().add("log-date-label");
         VBox.setMargin(packageInfo, new Insets(0, 0, INFO_BOX_TOP_MARGIN, 0));
         packageInfo.getChildren().addAll(packageTitle, logTitleUnderLine, logDateLabel);
@@ -157,29 +162,30 @@ public class ClientView implements ClientObserver {
         topLine.getChildren().addAll(packageInfo, closePanelButton);
 
         VBox productInfo = new VBox();
-        Label productInfoTitle = new Label("Customer Info");
-        productInfoTitle.getStyleClass().add("title");
-        Label productInfoSubVsAddress = new Label("Visit_address: " + customer.getVisitAddress());
-        productInfoSubVsAddress.setOnMouseClicked(this::changeCollum);
-        Label productInfoSubDvAddress = new Label("Delivery_address: " + customer.getDeliveryAddress());
-        productInfoSubDvAddress.setOnMouseClicked(this::changeCollum);
-        Label productInfoSubPhone = new Label("Phone_nr: " + customer.getPhoneNr());
-        productInfoSubPhone.setOnMouseClicked(this::changeCollum);
-        Label productInfoSubPostalCode = new Label("Postal_code: " + customer.getPostalCode());
-        productInfoSubPostalCode.setOnMouseClicked(this::changeCollum);
-        Label productInfoSubEmail = new Label("Email: " + customer.getEmail());
-        productInfoSubEmail.setOnMouseClicked(this::changeCollum);
+        Label customerInfoTitle = new Label("Customer Info");
+        customerInfoTitle.getStyleClass().add("title");
+        Label customerInfoSubVsAddress = new Label("Visit Address: " + customer.getVisitAddress());
+        customerInfoSubVsAddress.setOnMouseClicked(this::changeColumn);
+        Label customerInfoSubDvAddress = new Label("Delivery Address: " + customer.getDeliveryAddress());
+        customerInfoSubDvAddress.setOnMouseClicked(this::changeColumn);
+        Label customerInfoSubPhone = new Label("Phone Nr: " + customer.getPhoneNr());
+        customerInfoSubPhone.setOnMouseClicked(this::changeColumn);
+        Label customerInfoSubPostalCode = new Label("Postal Code: " + customer.getPostalCode());
+        customerInfoSubPostalCode.setOnMouseClicked(this::changeColumn);
+        Label customerInfoSubEmail = new Label("Email: " + customer.getEmail());
+        customerInfoSubEmail.setOnMouseClicked(this::changeColumn);
         VBox.setMargin(productInfo, new Insets(INFO_BOX_TOP_MARGIN, 0, 0, 0));
-        productInfo.getChildren().addAll(productInfoTitle, productInfoSubVsAddress,
-                productInfoSubDvAddress, productInfoSubPhone, productInfoSubPostalCode, productInfoSubEmail);
+        productInfo.getChildren().addAll(customerInfoTitle, customerInfoSubVsAddress,
+                customerInfoSubDvAddress, customerInfoSubPhone, customerInfoSubPostalCode, customerInfoSubEmail);
 
         VBox alertSetting = new VBox();
-        collumName = new Label();
-        collumName.getStyleClass().add("title");
+        columnName = new Label();
+        columnName.getStyleClass().add("title");
         valueInput = new TextField();
         valueInput.setPromptText("Input Value");
+        valueInput.setVisible(false);
         VBox.setMargin(productInfo, new Insets(INFO_BOX_TOP_MARGIN, 0, 0, 0));
-        alertSetting.getChildren().addAll(collumName, valueInput);
+        alertSetting.getChildren().addAll(columnName, valueInput);
 
         HBox bottomBar = new HBox();
         bottomBar.setAlignment(Pos.BOTTOM_CENTER);
@@ -194,6 +200,38 @@ public class ClientView implements ClientObserver {
         HBox.setHgrow(bottomBar, Priority.ALWAYS);
         VBox.setVgrow(bottomBar, Priority.ALWAYS);
 
+        editButton.setOnMouseClicked(mouseEvent -> {
+            try {
+                String column = null;
+                customerController.updateCustomerByQuery(customer.getId().toString(),columnName.getText().toLowerCase().replaceAll("\\s", ""), valueInput.getText());
+                switch (columnName.getText()){
+                    case "Visit Address" -> {
+                        customerInfoSubVsAddress.setText("Visit Address: " + valueInput.getText());
+                        column = "visitAddress";
+                    }
+                    case "Delivery Address" -> {
+                        customerInfoSubDvAddress.setText("Delivery Address: " + valueInput.getText());
+                        column = "deliveryAddress";
+                    }
+                    case "Phone Nr" -> {
+                        customerInfoSubPhone.setText("Phone Nr: " + valueInput.getText());
+                        column = "phoneNr";
+                    }
+                    case "Postal Code" -> {
+                        customerInfoSubPostalCode.setText("Postal Code: " + valueInput.getText());
+                        column = "postalCode";
+                    }
+                    case "Email" -> {
+                        customerInfoSubEmail.setText("Email: " + valueInput.getText());
+                        column = "email";
+                    }
+                }
+                customerController.updateCustomerByQuery(customer.getId().toString(),column, valueInput.getText());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         HBox middleSection = new HBox(productInfo, alertSetting);
         HBox.setMargin(productInfo, new Insets(0, 150, 0, 0));
         VBox.setMargin(middleSection, new Insets(15, 0, 0, 0));
@@ -203,10 +241,11 @@ public class ClientView implements ClientObserver {
         return mainContainer;
     }
 
-    public void changeCollum(MouseEvent event) {
+    public void changeColumn(MouseEvent event) {
         String source = event.getSource().toString();
         String name = source.substring(source.indexOf("]") + 2, source.indexOf(":"));
-        collumName.setText(name);
+        columnName.setText(name);
+        valueInput.setVisible(true);
     }
 
     @Override
