@@ -7,6 +7,9 @@ import com.vanderlelie.frontend.services.RequestService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.stream.Stream;
 
 public class CustomerController {
     private ClientResponse clientResponse = new ClientResponse();
@@ -23,14 +26,20 @@ public class CustomerController {
 
     public void searchCustomersByQuery(String query) throws Exception {
         Customer[] logs = requestService.getCustomers();
+        Arrays.sort(logs, Comparator.comparingInt(Customer::getCustomerNumber));
 
         this.clientResponse.setLogs(new ArrayList<>(Arrays.asList(logs)));
     }
 
-    public void updateCustomerByQuery(String collumName, String value) throws Exception {
-        Customer customer= requestService.updateCustomer(collumName, value);
-        System.out.println(customer.toString());
-        //this.clientResponse.notifyObservers(customer);
+    public void updateCustomerByQuery(String customerId, String columnName, String value) throws Exception {
+        requestService.updateCustomer(customerId, columnName, value);
+        searchCustomersByQuery("");
+    }
+
+    public void searchCustomersByCustomerNumber(int customerNumber) throws Exception {
+        Customer[] logs = requestService.getCustomersByCustomerNumber(customerNumber);
+
+        this.clientResponse.setLogs(new ArrayList<>(Arrays.asList(logs)));
     }
 
     public void registerClientObserver(ClientObserver clientView) {

@@ -34,17 +34,24 @@ public class AdminSideMenuView {
     public void initialize(){
     }
 
-    @FXML
-    public void onClick(){
-        clientDetails.setUnderline(true);
-    }
-
     public void switchToStockTab() {
+        switchUnderline(stock);
         selectTabByIndex(STOCK_TAB);
     }
 
     public void switchToClientTab() {
+        switchUnderline(clientDetails);
         selectTabByIndex(CLIENT_TAB);
+    }
+
+    public void switchToDefaultPackaging() {
+        switchUnderline(defaultPackaging);
+    }
+    public void switchToEmployees() {
+        switchUnderline(employees);
+    }
+    public void switchToArchive() {
+        switchUnderline(archive);
     }
 
     private void selectTabByIndex(int index) {
@@ -54,5 +61,15 @@ public class AdminSideMenuView {
 
         SingleSelectionModel<Tab> selectionModel = adminTab.getSelectionModel();
         selectionModel.select(index);
+    }
+
+    public void switchUnderline(Text currentTab){
+        clientDetails.setUnderline(false);
+        defaultPackaging.setUnderline(false);
+        employees.setUnderline(false);
+        archive.setUnderline(false);
+        stock.setUnderline(false);
+
+        currentTab.setUnderline(true);
     }
 }

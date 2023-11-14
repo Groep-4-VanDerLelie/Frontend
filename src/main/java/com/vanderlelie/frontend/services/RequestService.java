@@ -98,13 +98,17 @@ public class RequestService {
     }
 
     public Customer[] getCustomers() throws Exception {
-        return  this.makeRequest(RequestMethod.GET, "/customers",Customer[].class);
+        return  this.makeRequest(RequestMethod.GET, "/customers", Customer[].class);
     }
 
-    public Customer updateCustomer(String collumName, String value) throws Exception{
+    public Customer[] getCustomersByCustomerNumber(int customerNumber) throws Exception {
+        return  this.makeRequest(RequestMethod.GET, "/customers/CustomerNumber/" + customerNumber, Customer[].class);
+    }
+
+    public Customer updateCustomer(String customer,String columnName, String value) throws Exception{
         JsonObject payload = new JsonObject();
-        payload.addProperty(collumName, value);
-        return this.makeRequest(RequestMethod.PATCH, "/customers", Customer.class,payload.toString());
+        payload.addProperty(columnName, value);
+        return this.makeRequest(RequestMethod.PATCH, "/customers/" + customer, Customer.class,payload.toString());
     }
 
     public Packaging[] getAllPackaging() throws Exception {
@@ -126,6 +130,7 @@ public class RequestService {
                     requestBuilder.GET();
                 }
                 case POST -> requestBuilder.POST(HttpRequest.BodyPublishers.ofString(payload));
+                case PATCH -> requestBuilder.method(String.valueOf(RequestMethod.PATCH), HttpRequest.BodyPublishers.ofString(payload));
             }
 
             HttpRequest request = requestBuilder.build();

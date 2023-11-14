@@ -14,13 +14,13 @@
                         <Text fx:id="clientDetails" fill="white" onMouseClicked="#switchToClientTab" text="Client Details"/>
                     </HBox>
                     <HBox styleClass="context-admin-menu">
-                        <Text fx:id="defaultPackaging" fill="white" onMouseClicked="#onClick" text="Default packaging" />
+                        <Text fx:id="defaultPackaging" fill="white" onMouseClicked="#switchToDefaultPackaging" text="Default packaging" />
                     </HBox>
                     <HBox styleClass="context-admin-menu">
-                        <Text fx:id="employees" fill="white" onMouseClicked="#onClick" text="Employees" />
+                        <Text fx:id="employees" fill="white" onMouseClicked="#switchToEmployees" text="Employees" />
                     </HBox>
                     <HBox styleClass="context-admin-menu, last">
-                        <Text fx:id="archive" fill="white" onMouseClicked="#onClick" text="Archive" />
+                        <Text fx:id="archive" fill="white" onMouseClicked="#switchToArchive" text="Archive" />
                     </HBox>
                     <HBox styleClass="context-admin-menu, last">
                         <Text fx:id="stock" fill="white" onMouseClicked="#switchToStockTab" text="Stock" />
